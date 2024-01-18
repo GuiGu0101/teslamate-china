@@ -15,7 +15,7 @@ defmodule TeslaApi.Stream do
               disconnects: 0
   end
 
-  @columns ~w(speed odometer soc elevation est_heading est_lat est_lng power shift_state range
+  @columns ~w(speed odometer soc elevation est_heading est_lat est_lng native_location_supported native_type native_latitude native_longitude power shift_state range
               est_range heading)a
 
   @cacerts CAStore.file_path()

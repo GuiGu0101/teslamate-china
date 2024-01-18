@@ -12,7 +12,7 @@ defmodule TeslaMate.Locations.Address do
     field :longitude, :decimal, read_after_writes: true
     field :name, :string
     field :neighbourhood, :string
-    field :osm_id, :integer
+    field :osm_id, :string
     field :osm_type, :string
     field :postcode, :string
     field :raw, :map

@@ -1267,7 +1267,8 @@ defmodule TeslaMate.Vehicles.Vehicle do
       tpms_pressure_fl: vehicle.vehicle_state.tpms_pressure_fl,
       tpms_pressure_fr: vehicle.vehicle_state.tpms_pressure_fr,
       tpms_pressure_rl: vehicle.vehicle_state.tpms_pressure_rl,
-      tpms_pressure_rr: vehicle.vehicle_state.tpms_pressure_rr
+      tpms_pressure_rr: vehicle.vehicle_state.tpms_pressure_rr,
+      coord_type: vehicle.drive_state.native_type
     }
 
     elevation =
@@ -1288,7 +1289,8 @@ defmodule TeslaMate.Vehicles.Vehicle do
       speed: Convert.mph_to_kmh(stream_data.speed),
       battery_level: stream_data.soc,
       elevation: stream_data.elevation,
-      odometer: Convert.miles_to_km(stream_data.odometer, 6)
+      odometer: Convert.miles_to_km(stream_data.odometer, 6),
+      coord_type: stream_data.native_type
     }
   end
 
@@ -1496,7 +1498,8 @@ defmodule TeslaMate.Vehicles.Vehicle do
             speed: stream_data.speed,
             power: stream_data.power,
             heading: stream_data.est_heading,
-            shift_state: stream_data.shift_state
+            shift_state: stream_data.shift_state,
+            native_type: stream_data.native_type
         },
         charge_state: %Charge{
           vehicle.charge_state

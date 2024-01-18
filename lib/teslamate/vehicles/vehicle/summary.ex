@@ -6,7 +6,7 @@ defmodule TeslaMate.Vehicles.Vehicle.Summary do
   alias TeslaMate.Log.Car
 
   defstruct ~w(
-    car display_name state since healthy latitude longitude heading battery_level charging_state usable_battery_level
+    car display_name state since healthy latitude longitude heading coord_type battery_level charging_state usable_battery_level
     ideal_battery_range_km est_battery_range_km rated_battery_range_km charge_energy_added
     speed outside_temp inside_temp is_climate_on is_preconditioning locked sentry_mode
     plugged_in scheduled_charging_start_time charge_limit_soc charger_power windows_open doors_open
@@ -81,6 +81,7 @@ defmodule TeslaMate.Vehicles.Vehicle.Summary do
       speed: speed(vehicle),
       shift_state: get_in_struct(vehicle, [:drive_state, :shift_state]),
       heading: get_in_struct(vehicle, [:drive_state, :heading]),
+      coord_type: get_in_struct(vehicle, [:drive_state, :native_type]),
 
       # Charge State
       battery_level: charge(vehicle, :battery_level),

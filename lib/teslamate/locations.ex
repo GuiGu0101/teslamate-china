@@ -47,70 +47,74 @@ defmodule TeslaMate.Locations do
     end
   end
 
-  def refresh_addresses(lang) do
-    Address
-    |> Repo.all()
-    |> Enum.chunk_every(50)
-    |> Enum.with_index()
-    |> Enum.each(fn {addresses, i} ->
-      if i > 0, do: Process.sleep(1500)
+  # TODO 这里临时屏蔽语言变更时的逻辑
+  def  refresh_addresses(_lang) do
 
-      {:ok, attrs} = @geocoder.details(addresses, lang)
-
-      addresses
-      |> merge_addresses(attrs)
-      |> Enum.each(fn
-        {%Address{osm_type: "unknown"}, _attrs} ->
-          :ignore
-
-        {%Address{} = address, attrs} when is_map(attrs) ->
-          attrs =
-            Map.take(attrs, [
-              :city,
-              :country,
-              :county,
-              :display_name,
-              :neighbourhood,
-              :state,
-              :state_district
-            ])
-
-          {:ok, _} = update_address(address, attrs)
-
-        {%Address{osm_id: id, osm_type: type} = address, nil} ->
-          case Geocoder.reverse_lookup(address.latitude, address.longitude, lang) do
-            {:ok, %{osm_id: ^id, osm_type: ^type} = attrs} ->
-              attrs =
-                Map.take(attrs, [
-                  :city,
-                  :country,
-                  :county,
-                  :display_name,
-                  :neighbourhood,
-                  :state,
-                  :state_district
-                ])
-
-              {:ok, _} = update_address(address, attrs)
-
-            {:ok, attrs} ->
-              Logger.warning("""
-              Address does not match! Skipping …
-
-                osm_id: #{id} -> #{attrs[:osm_id]}
-                osm_type: #{type} -> #{attrs[:osm_type]}
-
-              """)
-          end
-
-          Process.sleep(1500)
-      end)
-    end)
-  rescue
-    e in MatchError ->
-      Logger.error(Exception.format(:error, e, __STACKTRACE__))
-      {:error, with({:error, reason} <- e.term, do: reason)}
   end
+  # def refresh_addresses(lang) do
+  #   Address
+  #   |> Repo.all()
+  #   |> Enum.chunk_every(50)
+  #   |> Enum.with_index()
+  #   |> Enum.each(fn {addresses, i} ->
+  #     if i > 0, do: Process.sleep(1500)
+
+  #     {:ok, attrs} = @geocoder.details(addresses, lang)
+
+  #     addresses
+  #     |> merge_addresses(attrs)
+  #     |> Enum.each(fn
+  #       {%Address{osm_type: "unknown"}, _attrs} ->
+  #         :ignore
+
+  #       {%Address{} = address, attrs} when is_map(attrs) ->
+  #         attrs =
+  #           Map.take(attrs, [
+  #             :city,
+  #             :country,
+  #             :county,
+  #             :display_name,
+  #             :neighbourhood,
+  #             :state,
+  #             :state_district
+  #           ])
+
+  #         {:ok, _} = update_address(address, attrs)
+
+  #       {%Address{osm_id: id, osm_type: type} = address, nil} ->
+  #         case Geocoder.reverse_lookup(address.latitude, address.longitude, lang) do
+  #           {:ok, %{osm_id: ^id, osm_type: ^type} = attrs} ->
+  #             attrs =
+  #               Map.take(attrs, [
+  #                 :city,
+  #                 :country,
+  #                 :county,
+  #                 :display_name,
+  #                 :neighbourhood,
+  #                 :state,
+  #                 :state_district
+  #               ])
+
+  #             {:ok, _} = update_address(address, attrs)
+
+  #           {:ok, attrs} ->
+  #             Logger.warning("""
+  #             Address does not match! Skipping …
+
+  #               osm_id: #{id} -> #{attrs[:osm_id]}
+  #               osm_type: #{type} -> #{attrs[:osm_type]}
+
+  #             """)
+  #         end
+
+  #         Process.sleep(1500)
+  #     end)
+  #   end)
+  # rescue
+  #   e in MatchError ->
+  #     Logger.error(Exception.format(:error, e, __STACKTRACE__))
+  #     {:error, with({:error, reason} <- e.term, do: reason)}
+  # end
 
   defp merge_addresses(addresses, attrs) do
     addresses =

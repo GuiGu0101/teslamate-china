@@ -1,8 +1,19 @@
 defmodule TeslaApi.Stream.Data do
-  defstruct ~w(time speed odometer soc elevation est_heading est_lat est_lng power shift_state range
+  require Logger
+
+  defstruct ~w(time speed odometer soc elevation est_heading est_lat est_lng native_type power shift_state range
                est_range heading)a
 
   def into!(raw) do
+    raw =
+      if raw[:native_location_supported] == "1" do
+        raw
+        |> Map.replace(:est_lat, raw[:native_latitude])
+        |> Map.replace(:est_lng, raw[:native_longitude])
+      else
+        raw
+      end
+
     data =
       raw
       |> Map.update(:time, nil, &to_dt/1)
@@ -11,6 +22,7 @@ defmodule TeslaApi.Stream.Data do
       |> Map.update(:est_lat, nil, &to_f/1)
       |> Map.update(:est_lng, nil, &to_f/1)
       |> Map.update(:est_range, nil, &to_i/1)
+      |> Map.update(:native_type, nil, &to_s/1)
       |> Map.update(:heading, nil, &to_i/1)
       |> Map.update(:odometer, nil, &to_f/1)
       |> Map.update(:power, nil, &to_i/1)
@@ -18,6 +30,7 @@ defmodule TeslaApi.Stream.Data do
       |> Map.update(:shift_state, nil, &to_s/1)
       |> Map.update(:soc, nil, &to_i/1)
       |> Map.update(:speed, nil, &to_i/1)
+      |> Map.drop([:native_latitude, :native_longitude, :native_location_supported])
 
     struct!(__MODULE__, data)
   end
