@@ -1,5 +1,5 @@
 defmodule TeslaMate.Vehicles.Vehicle.StreamingTest do
-  use TeslaMate.VehicleCase, async: true
+  use TeslaMate.VehicleCase, async: false
 
   import ExUnit.CaptureLog
 
@@ -236,6 +236,13 @@ defmodule TeslaMate.Vehicles.Vehicle.StreamingTest do
              end) =~ """
              Discarded stale fetch result: [
                now: %TeslaApi.Vehicle.State.Drive{
+                 active_route_destination: nil,
+                 active_route_energy_at_arrival: nil,
+                 active_route_latitude: nil,
+                 active_route_longitude: nil,
+                 active_route_miles_to_arrival: nil,
+                 active_route_minutes_to_arrival: nil,
+                 active_route_traffic_minutes_delay: nil,
                  gps_as_of: nil,
                  heading: nil,
                  latitude: 42.91,
@@ -250,6 +257,13 @@ defmodule TeslaMate.Vehicles.Vehicle.StreamingTest do
                  timestamp: #{now_ts}
                },
                last: %TeslaApi.Vehicle.State.Drive{
+                 active_route_destination: nil,
+                 active_route_energy_at_arrival: nil,
+                 active_route_latitude: nil,
+                 active_route_longitude: nil,
+                 active_route_miles_to_arrival: nil,
+                 active_route_minutes_to_arrival: nil,
+                 active_route_traffic_minutes_delay: nil,
                  gps_as_of: nil,
                  heading: 120,
                  latitude: 42.1,
@@ -554,6 +568,31 @@ defmodule TeslaMate.Vehicles.Vehicle.StreamingTest do
       stream(name, %{time: DateTime.utc_now()})
 
       refute_receive _
+    end
+  end
+
+  describe "offline" do
+    test "fetch state when stream get :vehicle_offline", %{test: name} do
+      events = [
+        {:ok, online_event()},
+        {:ok, online_event()},
+        fn -> Process.sleep(10_000) end
+      ]
+
+      :ok =
+        start_vehicle(name, events,
+          settings: %{use_streaming_api: true, suspend_min: 999_999_999}
+        )
+
+      assert_receive {:start_state, car, :online, date: _}
+      assert_receive {:insert_position, ^car, %{}}
+      assert_receive {ApiMock, {:stream, _eid, func}} when is_function(func)
+      assert_receive {:pubsub, {:broadcast, _, _, %Summary{state: :online}}}
+
+      assert capture_log(@log_opts, fn ->
+               send(name, {:stream, :vehicle_offline})
+               refute_receive _
+             end) =~ "Stream reports vehicle as offline, fetching vehicle state ..."
     end
   end
 end

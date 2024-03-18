@@ -526,6 +526,16 @@ defmodule TeslaMate.Vehicles.Vehicle do
     {:keep_state, %Data{data | stream_pid: pid}}
   end
 
+  def handle_event(:info, {:stream, msg}, _state, data)
+      when msg in [:vehicle_offline] do
+    Logger.warning("Stream reports vehicle as offline, fetching vehicle state ...",
+      car_id: data.car.id
+    )
+
+    # fetch data right away and let the result decide the real state
+    {:keep_state_and_data, schedule_fetch(0, data)}
+  end
+
   def handle_event(:info, {:stream, stream_data}, _state, data) do
     Logger.info("Received stream data: #{inspect(stream_data)}", car_id: data.car.id)
     :keep_state_and_data
