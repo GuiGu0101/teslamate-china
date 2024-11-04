@@ -1,5 +1,38 @@
 # Changelog
 
+## [1.31.1] - 2024-10-29
+
+This release primarily prevents beam.smp from overloading the CPU on ARM hosts. It also includes a number of other bug fixes and performance improvements. Enjoy it.
+Please also note: [v1.31.0 Release Notes](https://github.com/teslamate-org/teslamate/releases/tag/v1.31.0)
+
+### New features
+
+### Improvements and bug fixes
+
+- fix: use elixir-1.17.3-otp-26 to avoid beam.smp chewing CPU on arm (#4319 - @swiffer and @JakobLichterfeld)
+
+#### Build, CI, internal
+
+- ci(fix): update cleanup_caches.yml to use new cache management commands and fix permissions ([d6793ce](https://github.com/teslamate-org/teslamate/commit/d6793ce5717687b9e984067bf4c208415e15fdac), [b0b694f](https://github.com/teslamate-org/teslamate/commit/b0b694fc8c3c45036aafda45200f3b0d068a2f50), [16bb503](https://github.com/teslamate-org/teslamate/commit/16bb5032c7d81cb86e76cc19662e3332456291a0) - @JakobLichterfeld)
+- ci: Add workflow to manually cleanup largest 100 caches ([dad7e3d](https://github.com/teslamate-org/teslamate/commit/dad7e3dea0ae1d799398bf1b31a0d598eff784bf), [523419d](https://github.com/teslamate-org/teslamate/commit/523419d35a610c7b06bbf7e9c2edd105e7d089aa) - @JakobLichterfeld)
+
+#### Dashboards
+
+- perf: add ideal_battery_range_km as query condition (#4305 - @swiffer)
+- fix: re-add missing changes from pr 4124 (#4310 - @swiffer)
+- feat: add max speed & speed histogram to drive stats (#4253 - @js94x)
+- fix: remove convert_km from kwh calculations in timeline dashboard (#4318 - @swiffer)
+- fix: ensure dutch-tax dashboard is not repeating multiple times per car (row and table) (#4317 - @swiffer)
+
+#### Translations
+
+- Update default.po for thai (#4312 - @tomzt)
+- Spanish translation of missing items (#4320 -@ferminmg)
+
+#### Documentation
+
+- docs: fix ghcr image path in contributing guide (#4309 - @swiffer)
+
 ## [1.31.0] - 2024-10-27
 
 As always, lots of improvements. The focus has been on performance improvements, especially on slow HW like Raspberry Pi 3B+. We achieved 240x speed improvements in several dashboards :rocket: And we welcomed @swiffer to the TeslaMate-Org team :wave: And much, much more. Enjoy it.
@@ -2163,6 +2196,7 @@ New users need to sign in via the web interface.
 
 ## [1.0.0] - 2019-07-25
 
+[1.31.1]: https://github.com/teslamate-org/teslamate/compare/v1.31.0...v1.31.1
 [1.31.0]: https://github.com/teslamate-org/teslamate/compare/v1.30.1...v1.31.0
 [1.30.1]: https://github.com/teslamate-org/teslamate/compare/v1.30.0...v1.30.1
 [1.30.0]: https://github.com/teslamate-org/teslamate/compare/v1.29.2...v1.30.0

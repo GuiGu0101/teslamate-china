@@ -5,7 +5,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.0.1"
+      "version": "11.0.6+security-01"
     },
     {
       "type": "datasource",
@@ -161,7 +161,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.1",
+      "pluginVersion": "11.0.6+security-01",
       "targets": [
         {
           "datasource": {
@@ -258,7 +258,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.1",
+      "pluginVersion": "11.0.6+security-01",
       "targets": [
         {
           "datasource": {
@@ -356,7 +356,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.1",
+      "pluginVersion": "11.0.6+security-01",
       "targets": [
         {
           "datasource": {
@@ -455,7 +455,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.1",
+      "pluginVersion": "11.0.6+security-01",
       "targets": [
         {
           "datasource": {
@@ -493,7 +493,7 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "center",
+            "align": "auto",
             "cellOptions": {
               "type": "auto"
             },
@@ -501,7 +501,6 @@
             "inspect": false,
             "minWidth": 150
           },
-          "decimals": 2,
           "displayName": "",
           "mappings": [],
           "thresholds": {
@@ -516,8 +515,7 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "short"
+          }
         },
         "overrides": [
           {
@@ -531,10 +529,6 @@
                 "value": "Date"
               },
               {
-                "id": "unit",
-                "value": "dateTimeAsLocal"
-              },
-              {
                 "id": "links",
                 "value": [
                   {
@@ -545,11 +539,12 @@
                 ]
               },
               {
-                "id": "custom.align"
+                "id": "custom.minWidth",
+                "value": 180
               },
               {
-                "id": "custom.minWidth",
-                "value": 160
+                "id": "unit",
+                "value": "dateTimeAsLocal"
               }
             ]
           },
@@ -564,20 +559,12 @@
                 "value": "Added kWh"
               },
               {
-                "id": "unit",
-                "value": "none"
-              },
-              {
                 "id": "decimals",
                 "value": 2
               },
               {
                 "id": "custom.minWidth",
                 "value": 95
-              },
-              {
-                "id": "custom.align",
-                "value": "auto"
               }
             ]
           },
@@ -594,9 +581,6 @@
               {
                 "id": "unit",
                 "value": "percent"
-              },
-              {
-                "id": "custom.align"
               },
               {
                 "id": "decimals",
@@ -621,9 +605,6 @@
               {
                 "id": "unit",
                 "value": "percent"
-              },
-              {
-                "id": "custom.align"
               },
               {
                 "id": "decimals",
@@ -654,9 +635,6 @@
                 "value": 1
               },
               {
-                "id": "custom.align"
-              },
-              {
                 "id": "custom.minWidth",
                 "value": 75
               }
@@ -685,9 +663,6 @@
                 "value": {
                   "type": "color-text"
                 }
-              },
-              {
-                "id": "custom.align"
               },
               {
                 "id": "thresholds",
@@ -726,10 +701,6 @@
                 "value": "Cost"
               },
               {
-                "id": "unit",
-                "value": "none"
-              },
-              {
                 "id": "decimals",
                 "value": 2
               },
@@ -742,10 +713,6 @@
                     "url": "${base_url:raw}/charge-cost/${__data.fields.id.numeric}"
                   }
                 ]
-              },
-              {
-                "id": "custom.align",
-                "value": "auto"
               },
               {
                 "id": "noValue",
@@ -764,17 +731,6 @@
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.align"
-              },
-              {
                 "id": "custom.hidden",
                 "value": true
               }
@@ -786,17 +742,6 @@
               "options": "id"
             },
             "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.align"
-              },
               {
                 "id": "custom.hidden",
                 "value": true
@@ -814,14 +759,6 @@
                 "value": "Location"
               },
               {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
                 "id": "links",
                 "value": [
                   {
@@ -830,9 +767,6 @@
                     "url": "${base_url:raw}/geo-fences/${__data.fields.path}"
                   }
                 ]
-              },
-              {
-                "id": "custom.align"
               },
               {
                 "id": "custom.minWidth",
@@ -853,10 +787,6 @@
               {
                 "id": "unit",
                 "value": "none"
-              },
-              {
-                "id": "custom.align",
-                "value": "auto"
               },
               {
                 "id": "decimals",
@@ -891,9 +821,6 @@
                 "value": {
                   "type": "color-text"
                 }
-              },
-              {
-                "id": "custom.align"
               },
               {
                 "id": "thresholds",
@@ -936,15 +863,12 @@
                 "value": "velocitykmh"
               },
               {
-                "id": "custom.align"
+                "id": "custom.minWidth",
+                "value": 120
               },
               {
                 "id": "decimals",
                 "value": 0
-              },
-              {
-                "id": "custom.minWidth",
-                "value": 120
               }
             ]
           },
@@ -965,9 +889,6 @@
               {
                 "id": "decimals",
                 "value": 1
-              },
-              {
-                "id": "custom.align"
               },
               {
                 "id": "custom.minWidth",
@@ -1012,13 +933,6 @@
                 "value": "Driven (mi)"
               },
               {
-                "id": "unit",
-                "value": "none"
-              },
-              {
-                "id": "custom.align"
-              },
-              {
                 "id": "decimals",
                 "value": 0
               },
@@ -1043,15 +957,12 @@
                 "value": "velocitymph"
               },
               {
-                "id": "custom.align"
+                "id": "custom.minWidth",
+                "value": 120
               },
               {
                 "id": "decimals",
                 "value": 0
-              },
-              {
-                "id": "custom.minWidth",
-                "value": 120
               }
             ]
           },
@@ -1061,17 +972,6 @@
               "options": "path"
             },
             "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.align"
-              },
               {
                 "id": "custom.hidden",
                 "value": true
@@ -1089,16 +989,8 @@
                 "value": "Used kWh"
               },
               {
-                "id": "unit",
-                "value": "none"
-              },
-              {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "auto"
               },
               {
                 "id": "custom.minWidth",
@@ -1119,10 +1011,6 @@
               {
                 "id": "unit",
                 "value": "percentunit"
-              },
-              {
-                "id": "custom.align",
-                "value": "auto"
               },
               {
                 "id": "decimals",
@@ -1158,17 +1046,6 @@
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.align"
-              },
-              {
                 "id": "custom.hidden",
                 "value": true
               }
@@ -1181,17 +1058,6 @@
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.align"
-              },
-              {
                 "id": "custom.hidden",
                 "value": true
               }
@@ -1203,10 +1069,6 @@
               "options": "cost_per_kwh"
             },
             "properties": [
-              {
-                "id": "unit",
-                "value": "none"
-              },
               {
                 "id": "displayName",
                 "value": "Cost/kWh"
@@ -1222,10 +1084,6 @@
               {
                 "id": "custom.minWidth",
                 "value": 90
-              },
-              {
-                "id": "custom.align",
-                "value": "right"
               }
             ]
           },
@@ -1246,81 +1104,42 @@
                 }
               },
               {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-text"
-                }
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              },
-              {
                 "id": "custom.minWidth",
                 "value": 40
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Date"
-            },
-            "properties": [
+              },
               {
-                "id": "custom.width",
-                "value": 184
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Type"
-            },
-            "properties": [
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "AC": {
+                        "color": "green",
+                        "index": 0
+                      },
+                      "DC": {
+                        "color": "light-orange",
+                        "index": 1
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
               {
-                "id": "custom.width",
-                "value": 62
+                "id": "custom.align",
+                "value": "center"
               }
             ]
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "odometer_km"
+              "id": "byRegexp",
+              "options": "/odometer_.*/"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "Odometer (km)"
-              },
-              {
-                "id": "unit",
-                "value": "none"
-              },
-              {
-                "id": "decimals",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "odometer_mi"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Odometer (mi)"
-              },
-              {
-                "id": "unit",
-                "value": "none"
+                "value": "Odometer ($length_unit)"
               },
               {
                 "id": "decimals",
@@ -1350,7 +1169,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.0.1",
+      "pluginVersion": "11.0.6+security-01",
       "targets": [
         {
           "datasource": {
@@ -1438,7 +1257,7 @@
         "content": "From here you can check if you have \nincomplete data of **Charges** (charges without ending date)\nIf so, you may follow the official \nguide by <a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data' target='_blank'>Manually fixing data</a>",
         "mode": "markdown"
       },
-      "pluginVersion": "11.0.1",
+      "pluginVersion": "11.0.6+security-01",
       "targets": [
         {
           "datasource": {
@@ -1527,7 +1346,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "11.0.1",
+      "pluginVersion": "11.0.6+security-01",
       "targets": [
         {
           "alias": "",
@@ -1844,6 +1663,6 @@
   "timezone": "",
   "title": "Charges",
   "uid": "TSmNYvRRk",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
