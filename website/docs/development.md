@@ -7,7 +7,7 @@ sidebar_label: Development and Contributing
 ## Requirements
 
 - **Elixir** >= 1.17.3-otp-26
-- **Postgres** >= 17
+- **Postgres** >= 17.3
 - An **MQTT broker** e.g. mosquitto (_optional_)
 - **NodeJS** >= 20.15.0
 
@@ -82,7 +82,7 @@ To ensure a commit passes CI you should run `mix ci` locally, which executes the
 
 ### Testing with our CI which builds the Docker images automatically per PR
 
-Our CI automatically builds the Docker images for each PR. To test the changes introduce by a PR you can edit your docker-compose.yml file as follows (replace `pr-3836` with the PR number):
+Our CI automatically builds the Docker images for each PR (only for repo own PRs, not for external PRs). To test the changes introduce by a PR you can edit your docker-compose.yml file as follows (replace `pr-3836` with the PR number):
 
 For TeslaMate:
 
@@ -130,6 +130,8 @@ Access the Grafana at [http://localhost:3000](http://localhost:3000) and sign in
 
 Then edit the respective dashboard(s) locally. To export a dashboard hit the 'Save' button and select `Save JSON to file`. The final JSON file belongs in the directory `./grafana/dashboards/`. To apply the changes rebuild the image and start the container.
 
+When making larger changes to Grafana Dashboards please include updated screenshots (1920x1080 @ x2, Grafana running in Kiosk mode) in `./website/static/screenshots`. Ensure to blur sensitive information.
+
 ### Grafana VS Code Extension
 
 The Grafana VS Code extension allows you to open Grafana dashboards as JSON files in VS Code, and preview them live with data from a Grafana instance of your choice.
@@ -149,8 +151,10 @@ Datetime values are currently stored in columns of type `timestamp`. [This is NO
 
 While [Grafana macros](https://grafana.com/docs/grafana/latest/datasources/postgres/#macros) like `$__timeFilter` & `$__timeGroup` are working PostgreSQL functions like `DATE_TRUNC()` require additional treatment.
 
+Grafana is not setting the PostgreSQL session timezone. To ensure truncation is done with respect to the Grafana timezone setting set the [optional time_zone argument](https://www.postgresql.org/docs/current/functions-datetime.html#FUNCTIONS-DATETIME-TRUNC) for `DATE_TRUNC()`.
+
 ```sql
-DATE_TRUNC('day', TIMEZONE('UTC', date))
+DATE_TRUNC('day', TIMEZONE('UTC', date), '$__timezone')
 ```
 
 In addition ensure to compare either values with or without time zone.
@@ -197,4 +201,10 @@ To quickly identify performance bottlenecks we encourage all contributors to ena
   SELECT query, calls, mean_exec_time, total_exec_time FROM pg_stat_statements ORDER BY calls DESC LIMIT 10;
   ```
 
-Additional details about pg_stat_statements can be found here: https://www.postgresql.org/docs/current/pgstatstatements.html
+Additional details about pg_stat_statements can be found [here](https://www.postgresql.org/docs/current/pgstatstatements.html)
+
+## Entity Relationship Model (ERM)
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+<img alt="Entity Relationship Model" src={useBaseUrl('img/entity_relationship_model.png')} />

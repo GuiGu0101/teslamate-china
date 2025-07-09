@@ -4,9 +4,6 @@ on:
   pull_request:
     types:
       - closed
-  pull_request_target:
-    types:
-      - closed
     paths:
       - "**/*"
       - "!.github/**" # Important: Exclude PRs related to .github from auto-run
@@ -39,7 +36,7 @@ jobs:
           echo "Deleting caches..."
           for cacheKey in $cacheKeysForPR
           do
-              gh cache delete $cacheKey --repo $REPO --ref $BRANCH
+              gh cache delete $cacheKey --repo $REPO
           done
           echo "Done"
         env:
