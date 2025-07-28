@@ -1,9 +1,9 @@
 ---
-title: Manual install (FreeBSD)
-sidebar_label: Manual (FreeBSD)
+title: Manual install - FreeBSD (no support)
+sidebar_label: Manual - FreeBSD (no support)
 ---
 
-This document provides the necessary steps for installation of TeslaMate in a FreeBSD jail. The **recommended and most straightforward installation approach is through the use of [Docker](docker.md)**, however this walkthrough provides the necessary steps for manual installation in a FreeBSD 13.0 environment.
+This document provides the necessary steps for installation of TeslaMate in a FreeBSD jail. The **recommended and most straightforward installation approach is through the use of [Docker](../docker.md)**, however this walkthrough provides the necessary steps for manual installation in a FreeBSD 13.0 environment.
 It assumes that pre-requisites are met and only basic instructions are provided and should also work in FreeBSD before 13.0.
 
 ## Requirements
@@ -70,7 +70,7 @@ service postgresql initdb
 </details>
 
 <details>
-  <summary>Grafana (v11.6.1+)</summary>
+  <summary>Grafana (v12.0.1+)</summary>
 
 ```bash
 pkg install grafana
