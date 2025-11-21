@@ -13,7 +13,7 @@ A powerful, self-hosted data logger for your Tesla.
 - Written in **[Elixir](https://elixir-lang.org/)**
 - Data is stored in a **Postgres** database
 - Visualization and data analysis with **Grafana**
-- Vehicle data is published to a local **MQTT** Broker
+- Vehicle data is published to a local **[MQTT](https://en.wikipedia.org/wiki/MQTT)** Broker
 
 ## Documentation
 
@@ -68,6 +68,16 @@ Sneak peak into TeslaMate interface and bundled dashboards. See [the docs](https
 ![Drive Details](/website/static/screenshots/drive.png)
 
 ![Battery Health](/website/static/screenshots/battery-health.png)
+
+## Star History
+
+<a href="https://www.star-history.com/#teslamate-org/teslamate&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=teslamate-org/teslamate&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=teslamate-org/teslamate&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=teslamate-org/teslamate&type=date&legend=top-left" />
+ </picture>
+</a>
 
 ## Credits
 
