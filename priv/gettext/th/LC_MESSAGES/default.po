@@ -70,6 +70,7 @@ msgstr "ล๊อคแล้ว"
 msgid "Sentry Mode"
 msgstr "โหมด Sentry"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:3
 #: lib/teslamate_web/live/car_live/index.ex:15
 #: lib/teslamate_web/live/charge_live/cost.html.heex:3
 #: lib/teslamate_web/live/geofence_live/form.html.heex:3
@@ -82,7 +83,7 @@ msgstr "บ้าน"
 
 #: lib/teslamate_web/live/settings_live/index.ex:21
 #: lib/teslamate_web/live/settings_live/index.html.heex:4
-#: lib/teslamate_web/templates/layout/root.html.heex:107
+#: lib/teslamate_web/templates/layout/root.html.heex:113
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr "การตั้งค่า"
@@ -127,8 +128,9 @@ msgstr "อุณหภูมิ"
 msgid "Units"
 msgstr "หน่วย"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:118
 #: lib/teslamate_web/live/charge_live/cost.html.heex:165
-#: lib/teslamate_web/live/geofence_live/form.html.heex:124
+#: lib/teslamate_web/live/geofence_live/form.html.heex:126
 #, elixir-autogen, elixir-format
 msgid "Back"
 msgstr "ย้อนกลับ"
@@ -142,7 +144,7 @@ msgstr "สร้างขอบเขตทางภูมิศาสตร์
 #: lib/teslamate_web/live/geofence_live/form.html.heex:4
 #: lib/teslamate_web/live/geofence_live/index.ex:22
 #: lib/teslamate_web/live/geofence_live/index.html.heex:5
-#: lib/teslamate_web/templates/layout/root.html.heex:101
+#: lib/teslamate_web/templates/layout/root.html.heex:107
 #, elixir-autogen, elixir-format
 msgid "Geo-Fences"
 msgstr "ขอบเขตทางภูมิศาสตร์"
@@ -152,13 +154,14 @@ msgstr "ขอบเขตทางภูมิศาสตร์"
 msgid "Idle Time Before Trying to Sleep"
 msgstr "ระยะเวลาก่อนทำงานในโหมดหลับ"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:46
-#: lib/teslamate_web/live/geofence_live/form.html.heex:52
+#: lib/teslamate_web/live/geofence_live/form.html.heex:48
+#: lib/teslamate_web/live/geofence_live/form.html.heex:54
 #: lib/teslamate_web/live/geofence_live/index.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "ชื่อ"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:16
 #: lib/teslamate_web/live/geofence_live/form.html.heex:19
 #: lib/teslamate_web/live/geofence_live/index.html.heex:24
 #, elixir-autogen, elixir-format
@@ -170,14 +173,16 @@ msgstr "ตำแหน่ง"
 msgid "Radius"
 msgstr "รัศมี"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:121
 #: lib/teslamate_web/live/charge_live/cost.html.heex:168
-#: lib/teslamate_web/live/geofence_live/form.html.heex:128
+#: lib/teslamate_web/live/geofence_live/form.html.heex:130
 #, elixir-autogen, elixir-format
 msgid "Save"
 msgstr "บันทึก"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:122
 #: lib/teslamate_web/live/charge_live/cost.html.heex:169
-#: lib/teslamate_web/live/geofence_live/form.html.heex:129
+#: lib/teslamate_web/live/geofence_live/form.html.heex:131
 #: lib/teslamate_web/live/signin_live/index.html.heex:84
 #, elixir-autogen, elixir-format
 msgid "Saving..."
@@ -343,7 +348,7 @@ msgid "Remaining Time"
 msgstr "เวลาที่เหลือ"
 
 #: lib/teslamate_web/live/settings_live/index.html.heex:324
-#: lib/teslamate_web/templates/layout/root.html.heex:83
+#: lib/teslamate_web/templates/layout/root.html.heex:89
 #, elixir-autogen, elixir-format
 msgid "Dashboards"
 msgstr "แดชบอร์ด"
@@ -402,7 +407,7 @@ msgid "Charge Cost"
 msgstr "ค่าใช้จ่ายในการชาร์จ"
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:132
-#: lib/teslamate_web/live/geofence_live/form.html.heex:64
+#: lib/teslamate_web/live/geofence_live/form.html.heex:66
 #, elixir-autogen, elixir-format
 msgid "Cost"
 msgstr "ค่าใช้จ่าย"
@@ -422,6 +427,8 @@ msgstr "บันทึกแล้ว!"
 msgid "Fetching vehicle data ..."
 msgstr "กำลังเรียกข้อมูลรถ..."
 
+#: lib/teslamate_web/live/address_live/form.ex:105
+#: lib/teslamate_web/live/address_live/form.html.heex:4
 #: lib/teslamate_web/live/settings_live/index.html.heex:231
 #, elixir-autogen, elixir-format
 msgid "Addresses"
@@ -480,7 +487,7 @@ msgstr "ซูเปอร์ชาร์จฟรี"
 msgid "General Settings"
 msgstr "การตั้งค่าทั่วไป"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:96
+#: lib/teslamate_web/live/geofence_live/form.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Session fee"
 msgstr "ค่าธรรมเนียมเซสชัน"
@@ -491,7 +498,7 @@ msgid "Doors open"
 msgstr "ประตูเปิด"
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:140
-#: lib/teslamate_web/live/geofence_live/form.html.heex:72
+#: lib/teslamate_web/live/geofence_live/form.html.heex:74
 #, elixir-autogen, elixir-format
 msgid "Per kWh"
 msgstr "ต่อกิโลวัตต์ชั่วโมง"
@@ -501,24 +508,24 @@ msgstr "ต่อกิโลวัตต์ชั่วโมง"
 msgid "Total"
 msgstr "ทั้งหมด"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:163
+#: lib/teslamate_web/live/geofence_live/form.html.heex:165
 #, elixir-format, elixir-autogen
 msgid "There is <strong>%{n} charging session</strong> at this location for which no costs have been added yet."
 msgid_plural "There are <strong>%{n} charging sessions</strong> at this location for which no costs have been added yet."
 msgstr[0] "มีเซสชันการเรียกเก็บเงิน <strong>%{n} ครั้ง</strong> ณ ตำแหน่งนี้ ซึ่งยังไม่มีการเพิ่มค่าใช้จ่าย"
 msgstr[1] "มีเซสชันการเรียกเก็บเงิน <strong>%{n} ครั้ง</strong> ณ ตำแหน่งนี้ ซึ่งยังไม่มีการเพิ่มค่าใช้จ่าย"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:177
+#: lib/teslamate_web/live/geofence_live/form.html.heex:179
 #, elixir-autogen, elixir-format
 msgid "Add costs retroactively"
 msgstr "เพิ่มค่าใช้จ่ายย้อนหลัง"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:155
+#: lib/teslamate_web/live/geofence_live/form.html.heex:157
 #, elixir-autogen, elixir-format
 msgid "Charging Costs"
 msgstr "ค่าใช้จ่ายในการชาร์จ"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:174
+#: lib/teslamate_web/live/geofence_live/form.html.heex:176
 #, elixir-autogen, elixir-format
 msgid "Continue"
 msgstr "ดำเนินการต่อ"
@@ -544,7 +551,7 @@ msgid "GitHub"
 msgstr "GitHub"
 
 #: lib/teslamate_web/live/settings_live/index.html.heex:355
-#: lib/teslamate_web/templates/layout/root.html.heex:176
+#: lib/teslamate_web/templates/layout/root.html.heex:182
 #, elixir-autogen, elixir-format
 msgid "Update available"
 msgstr "มีการอัปเดต"
@@ -560,7 +567,7 @@ msgid "Trunk is open"
 msgstr "ที่เก็บสัมภาระท้ายรถเปิดอยู่"
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:141
-#: lib/teslamate_web/live/geofence_live/form.html.heex:73
+#: lib/teslamate_web/live/geofence_live/form.html.heex:75
 #, elixir-autogen, elixir-format
 msgid "Per Minute"
 msgstr "ต่อนาที"
@@ -610,22 +617,22 @@ msgstr "บัญชี Tesla ของคุณถูกล็อคเนื�
 msgid "Downloading update"
 msgstr "กำลังดาวน์โหลดอัปเดต"
 
-#: lib/teslamate_web/templates/layout/root.html.heex:133
+#: lib/teslamate_web/templates/layout/root.html.heex:139
 #, elixir-autogen, elixir-format
 msgid "No encryption key provided"
 msgstr "ไม่มีคีย์เข้ารหัสให้มา"
 
-#: lib/teslamate_web/templates/layout/root.html.heex:153
+#: lib/teslamate_web/templates/layout/root.html.heex:159
 #, elixir-autogen, elixir-format
 msgid "For more information, see the updated installation guides on %{link}"
 msgstr "สำหรับข้อมูลเพิ่มเติม โปรดดูคู่มือการติดตั้งที่อัปเดตที่ %{link}"
 
-#: lib/teslamate_web/templates/layout/root.html.heex:146
+#: lib/teslamate_web/templates/layout/root.html.heex:152
 #, elixir-autogen, elixir-format
 msgid "The automatically generated encryption key used for the current session can be found <strong>in the application logs</strong>."
 msgstr "คีย์การเข้ารหัสที่สร้างขึ้นโดยอัตโนมัติที่ใช้สำหรับเซสชันปัจจุบันสามารถพบได้<strong>ในบันทึกแอปพลิเคชัน</strong>"
 
-#: lib/teslamate_web/templates/layout/root.html.heex:139
+#: lib/teslamate_web/templates/layout/root.html.heex:145
 #, elixir-autogen, elixir-format
 msgid "To ensure that your <strong>Tesla API tokens are stored securely</strong>, an encryption key must be provided to TeslaMate via the <code>ENCRYPTION_KEY</code> environment variable. Otherwise, a <strong>login will be required after every restart</strong>."
 msgstr "เพื่อให้แน่ใจว่า <strong>โทเค็น Tesla API ของคุณจะถูกเก็บไว้อย่างปลอดภัย</strong> จะต้องมอบคีย์การเข้ารหัสให้กับ TeslaMate ผ่านทางตัวแปรสภาพแวดล้อม <code>ENCRYPTION_KEY</code> มิฉะนั้น <strong>จะต้องเข้าสู่ระบบหลังจากรีสตาร์ททุกครั้ง</strong>"
@@ -679,3 +686,8 @@ msgstr "การบันทึกใน Sentry โหมด"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "View car location on Google Maps"
 msgstr "ดูตำแหน่งรถบน Google Maps"
+
+#: lib/teslamate_web/live/address_live/form.ex:137
+#, elixir-autogen, elixir-format
+msgid "Address \"%{name}\" updated"
+msgstr ""

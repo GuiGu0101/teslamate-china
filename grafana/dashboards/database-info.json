@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": 1,
   "links": [
     {
       "icon": "dashboard",
@@ -59,7 +60,32 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Logged"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "已记录"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Odometer"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "里程表"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 4,
@@ -116,7 +142,7 @@
           }
         }
       ],
-      "title": "Mileage",
+      "title": "里程",
       "type": "stat"
     },
     {
@@ -140,7 +166,32 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Charges"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "充电次数"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Drives"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "驾驶次数"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 4,
@@ -225,7 +276,7 @@
           }
         }
       ],
-      "title": "Stats",
+      "title": "统计信息",
       "type": "stat"
     },
     {
@@ -249,7 +300,32 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Nº Car Updates"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "车辆更新次数"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Current Car Firmware"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "当前车辆系统版本"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 4,
@@ -334,7 +410,7 @@
           }
         }
       ],
-      "title": "Software",
+      "title": "车机系统",
       "type": "stat"
     },
     {
@@ -342,7 +418,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "This means you have some **Drives** or **Charges** not closed.\nIf so, you may follow the official guide: \n<a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data' target='_blank'>Manually fixing data</a>",
+      "description": "这意味着您有一些**行程**或**充电**尚未关闭。\n\n 如果是这样，您可以按照官方指南进行操作：\n <a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data' target='_blank'>手动修复数据</a>",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -359,7 +435,32 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Charges not closed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "充电未完成"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Drives not closed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "行程未完成"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 4,
@@ -444,7 +545,7 @@
           }
         }
       ],
-      "title": "Incomplete Data",
+      "title": "不完整数据",
       "type": "stat"
     },
     {
@@ -523,7 +624,7 @@
           }
         }
       ],
-      "title": "PostgreSQL Version",
+      "title": "PostgreSQL 版本",
       "type": "stat"
     },
     {
@@ -536,7 +637,7 @@
       },
       "id": 34,
       "panels": [],
-      "title": "Database Information",
+      "title": "数据库信息",
       "type": "row"
     },
     {
@@ -745,7 +846,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "These statistics can help you evaluate the efficiency of your indexes.\n\nIf your database experiences a lot of updates or deletions, like importing data from other sources or deleting a loaner car or some other similar situation, you might encounter index bloat, which can degrade performance. In such cases, reindexing could be beneficial.\n\nCheck <a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data#reindex-database' target='_blank'>Reindex Database</a>",
+      "description": "这些统计数据可以帮助您评估索引的效率。\n\n如果您的数据库经历了大量的更新或删除操作，例如从其他来源导入数据、删除借来的车辆或其他类似情况，您可能会遇到索引膨胀，从而降低性能。在这种情况下，重新索引可能会有所帮助。\n\n请查看<a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data#reindex-database' target='_blank'>重新索引数据库</a>",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1142,7 +1243,7 @@
       },
       "id": 44,
       "panels": [],
-      "title": "Statistics of SQL planning and execution",
+      "title": "SQL 解析和执行统计",
       "type": "row"
     },
     {
@@ -1221,7 +1322,7 @@
           }
         }
       ],
-      "title": "Time at which all statistics in the pg_stat_statements view were last reset",
+      "title": "pg_stat_statements 视图中所有统计信息最后重置的时间",
       "type": "stat"
     },
     {
@@ -1300,7 +1401,7 @@
           }
         }
       ],
-      "title": "Number of Statements tracked via pg_stat_statements",
+      "title": "通过 pg_stat_statements 跟踪的语句数量",
       "type": "stat"
     },
     {
@@ -1321,11 +1422,11 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "Check the [contribution docs](https://docs.teslamate.org/docs/development#enable-pg_stat_statements-to-collect-query-statistics) on how to enable tracking planning and execution statistics of all SQL statements executed by a server.\n",
+        "content": "请参阅[贡献文档](https://docs.teslamate.org/docs/development#enable-pg_stat_statements-to-collect-query-statistics)，了解如何启用对服务器执行的所有 SQL 语句的计划和执行统计信息的跟踪。\n",
         "mode": "markdown"
       },
       "pluginVersion": "12.4.0",
-      "title": "About pg_stat_statements (track statistics of SQL planning and execution)",
+      "title": "关于 pg_stat_statements（跟踪 SQL 规划和执行的统计数据）",
       "type": "text"
     },
     {
@@ -1464,7 +1565,7 @@
           }
         }
       ],
-      "title": "Top 20 Statements (by mean time spent executing the statement)",
+      "title": "前 20 条语句（按执行语句所花费的平均时间计算）",
       "type": "table"
     },
     {
@@ -1603,7 +1704,7 @@
           }
         }
       ],
-      "title": "Top 20 Statements (by total time spent executing the statement)",
+      "title": "前 20 条语句（按执行语句所花费的总时间）",
       "type": "table"
     }
   ],
@@ -1762,7 +1863,7 @@
     "refresh_intervals": []
   },
   "timezone": "browser",
-  "title": "Database Information",
+  "title": "数据库信息",
   "uid": "jchmDbInfo",
   "version": 1,
   "weekStart": ""

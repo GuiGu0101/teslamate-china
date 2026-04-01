@@ -1,0 +1,128 @@
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><.link navigate={~p"/"}><%= gettext("Home") %></.link></li>
+    <li><.link navigate={~p"/address"}><%= gettext("Addresses") %></.link></li>
+    <li class="is-active">
+      <a href="#">
+        <%= @address.name %>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<.form :let={f} for={@changeset} phx-change="validate" phx-submit="save" class="address">
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <%= label(f, :position, gettext("Position"), class: "label") %>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <div id="map_container" phx-update="ignore">
+            <%!-- <figure id="map" style="height: 400px; position: relative;" phx-hook="Map"></figure>  --%>
+            <figure
+              id="gdmap"
+              style="height: 400px; position: relative;"
+              data-id={@address.id || "unknown"}
+              phx-hook="AddressChagneMap"
+            >
+            </figure>
+          </div>
+          <input
+            id={"position_#{@address.id || "unknown"}"}
+            type="text"
+            value={"#{Ecto.Changeset.get_field(@changeset, :latitude)},#{Ecto.Changeset.get_field(@changeset, :longitude)},#{Ecto.Changeset.get_field(@changeset, :name)}"}
+            class="is-hidden"
+            phx-hook="TriggerChange"
+            disabled
+          />
+          <%!-- <%= hidden_input() %> --%>
+        </div>
+        <p><%= @changeset.action %></p>
+        <%= if @show_errors do %>
+          <p class="help is-danger">
+            <span>raw: </span> <%= error_tag(f, :raw) %>
+          </p>
+        <% end %>
+      </div>
+      <div class="field is-flex-grow-0" style="width: 300px">
+        <div class="control">
+          <nav class="panel is-flex is-flex-direction-column" style="height: 400px">
+            <p class="panel-heading is-flex-grow-0">推荐地点<%= @type %></p>
+            <div style="overflow: auto;" class="is-flex-grow-1">
+              <a
+                :for={ad <- @addresses}
+                class="panel-block"
+                phx-click={JS.push("change_address", value: ad)}
+              >
+                <span class="panel-icon">
+                  <i class="mdi mdi-map-marker-circle" aria-hidden="true"></i>
+                </span>
+                <%= ad.name %>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+<%
+fields = [
+    :latitude,
+    :longitude,
+    :name,
+    :house_number,
+    :road,
+    :neighbourhood,
+    :city,
+    :county,
+    :state,
+    :state_district,
+    :country,
+    :postcode,
+    :display_name,
+  ]
+  fields =
+    if @address.osm_id == "unknown" or @action == :new do
+      [:osm_id,:osm_type] ++ fields
+    else
+      fields
+    end
+ %>
+
+  <%=
+  for field <- fields do %>
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <%= label(f, field, field, class: "label") %>
+      </div>
+      <div class="field-body">
+        <div class="field is-expanded">
+          <div class="control">
+            <%= text_input(f, field, class: "input",readonly: field == :osm_id || field == :osm_type || field == :id) %>
+          </div>
+          <%= if @show_errors do %>
+            <p class="help is-danger"><%= error_tag(f, field) %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field is-horizontal mt-5">
+    <div class="field-label"></div>
+    <div class="field-body">
+      <div class="field is-grouped">
+        <div class="control">
+          <%= link(gettext("Back"), to: @redirect_to, class: "button") %>
+        </div>
+        <div class="control">
+          <%= submit(gettext("Save"),
+            phx_disable_with: gettext("Saving..."),
+            class: "button is-info"
+          ) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</.form>

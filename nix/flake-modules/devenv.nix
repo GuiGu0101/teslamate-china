@@ -18,7 +18,7 @@
 
       nodejs = pkgs.nodejs;
 
-      postgres_port = 7000;
+      postgres_port = 5433;
       mosquitto_port = 7001;
       process_compose_port = 7002;
 
@@ -45,7 +45,7 @@
             prefetch-npm-deps
             # for dashboard scripts
             jq
-            psql
+            # psql
             mosquitto
             mosquitto_sub
             config.treefmt.build.wrapper
@@ -58,14 +58,14 @@
           ++ optional stdenv.isDarwin terminal-notifier;
         enterShell = ''
           export LOCALES="${config.teslamate.cldr}/priv/cldr";
-          export PORT="4000"
-          export ENCRYPTION_KEY="your_secure_encryption_key_here"
+          export PORT="4008"
+          export ENCRYPTION_KEY="pMWSVzIWhkZo81W7"
           export DATABASE_USER="teslamate"
-          export DATABASE_PASS="your_secure_password_here"
-          export DATABASE_NAME="teslamate"
-          export DATABASE_HOST="127.0.0.1"
-          export DATABASE_PORT="${toString postgres_port}"
-          export MQTT_HOST="127.0.0.1"
+          export DATABASE_PASS="qJLwScSq6WY8lZRY"
+          export DATABASE_NAME="teslamate_dev"
+          export DATABASE_HOST="localhost"
+          export DATABASE_PORT="5433"
+          export MQTT_HOST="localhost"
           export MQTT_PORT="${toString mosquitto_port}"
           export RELEASE_COOKIE="1234567890123456789"
           export TZDATA_DIR="$PWD/tzdata"
@@ -82,18 +82,18 @@
           port = process_compose_port;
           tui.enable = true;
         };
-        services.postgres = {
-          enable = true;
-          package = pkgs.postgresql;
-          listen_addresses = "127.0.0.1";
-          port = postgres_port;
-          initialDatabases = [{ name = "teslamate"; }];
-          initialScript = ''
-            CREATE USER teslamate with encrypted password 'your_secure_password_here';
-            GRANT ALL PRIVILEGES ON DATABASE teslamate TO teslamate;
-            ALTER USER teslamate WITH SUPERUSER;
-          '';
-        };
+        # services.postgres = {
+        #   enable = true;
+        #   package = pkgs.postgresql;
+        #   listen_addresses = "127.0.0.1";
+        #   port = postgres_port;
+        #   initialDatabases = [{ name = "teslamate"; }];
+        #   initialScript = ''
+        #     CREATE USER teslamate with encrypted password 'your_secure_password_here';
+        #     GRANT ALL PRIVILEGES ON DATABASE teslamate TO teslamate;
+        #     ALTER USER teslamate WITH SUPERUSER;
+        #   '';
+        # };
       };
     in
     {

@@ -18,14 +18,36 @@
           "type": "grafana-postgresql-datasource",
           "uid": "TeslaMate"
         },
-        "enable": false,
+        "enable": true,
         "hide": false,
         "iconColor": "rgba(255, 96, 96, 1)",
         "limit": 100,
         "name": "Charged",
-        "rawQuery": "SELECT\n$__time(start_date),\nend_date as timeend,\nconcat('Charged: ',round(cast(charge_energy_added as numeric),2),' kWh') AS text\nFROM charging_processes\nWHERE\n$__timeFilter(start_date)  AND duration_min > 5\nORDER BY start_date DESC",
         "showIn": 0,
         "tags": [],
+        "target": {
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT\n$__time(start_date),\nend_date as timeend,\nconcat('Charged: ',round(cast(charge_energy_added as numeric),2),' kWh') AS text\nFROM charging_processes\nWHERE\n$__timeFilter(start_date)  AND duration_min > 5\nORDER BY start_date DESC",
+          "refId": "Annotation",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
         "type": "tags"
       }
     ]
@@ -72,6 +94,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -81,7 +104,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "Projected Range",
+            "axisLabel": "续航",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -143,10 +166,26 @@
               },
               {
                 "id": "custom.axisLabel",
-                "value": "Mileage"
+                "value": "总里程"
               },
               {
                 "id": "min"
+              },
+              {
+                "id": "displayName",
+                "value": "总里程"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Projected rated range [km]"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "续航 [km]"
               }
             ]
           }
@@ -236,7 +275,7 @@
           }
         }
       ],
-      "title": "Projected Range - Mileage",
+      "title": "续航 - 总里程",
       "type": "timeseries"
     },
     {
@@ -547,6 +586,7 @@
         },
         "tooltip": {
           "hideZeros": false,
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -752,6 +792,7 @@
           }
         ],
         "query": "5m,15m,30m,1h,3h,6h",
+        "queryValue": "",
         "refresh": 2,
         "type": "interval"
       }
@@ -763,7 +804,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Projected Range",
+  "title": "预估续航",
   "uid": "riqUfXgRz",
   "version": 1,
   "weekStart": ""

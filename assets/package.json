@@ -6,6 +6,7 @@
     "deploy": "node scripts/build.js"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@creativebulma/bulma-divider": "^1.1.0",
     "@creativebulma/bulma-tooltip": "^1.2.0",
     "@geoman-io/leaflet-geoman-free": "^2.19.2",

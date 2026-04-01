@@ -70,6 +70,7 @@ msgstr "Verrouillée"
 msgid "Sentry Mode"
 msgstr "Mode sentinelle"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:3
 #: lib/teslamate_web/live/car_live/index.ex:15
 #: lib/teslamate_web/live/charge_live/cost.html.heex:3
 #: lib/teslamate_web/live/geofence_live/form.html.heex:3
@@ -127,8 +128,9 @@ msgstr "Température"
 msgid "Units"
 msgstr "Unités"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:118
 #: lib/teslamate_web/live/charge_live/cost.html.heex:165
-#: lib/teslamate_web/live/geofence_live/form.html.heex:124
+#: lib/teslamate_web/live/geofence_live/form.html.heex:126
 #, elixir-autogen, elixir-format
 msgid "Back"
 msgstr "Retour"
@@ -152,13 +154,14 @@ msgstr "Géorepérages"
 msgid "Idle Time Before Trying to Sleep"
 msgstr "Temps d'inactivité avant d'essayer de dormir"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:46
-#: lib/teslamate_web/live/geofence_live/form.html.heex:52
+#: lib/teslamate_web/live/geofence_live/form.html.heex:48
+#: lib/teslamate_web/live/geofence_live/form.html.heex:54
 #: lib/teslamate_web/live/geofence_live/index.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Nom"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:16
 #: lib/teslamate_web/live/geofence_live/form.html.heex:19
 #: lib/teslamate_web/live/geofence_live/index.html.heex:24
 #, elixir-autogen, elixir-format
@@ -170,14 +173,16 @@ msgstr "Position"
 msgid "Radius"
 msgstr "Rayon"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:121
 #: lib/teslamate_web/live/charge_live/cost.html.heex:168
-#: lib/teslamate_web/live/geofence_live/form.html.heex:128
+#: lib/teslamate_web/live/geofence_live/form.html.heex:130
 #, elixir-autogen, elixir-format
 msgid "Save"
 msgstr "Enregistrer"
 
+#: lib/teslamate_web/live/address_live/form.html.heex:122
 #: lib/teslamate_web/live/charge_live/cost.html.heex:169
-#: lib/teslamate_web/live/geofence_live/form.html.heex:129
+#: lib/teslamate_web/live/geofence_live/form.html.heex:131
 #: lib/teslamate_web/live/signin_live/index.html.heex:84
 #, elixir-autogen, elixir-format
 msgid "Saving..."
@@ -402,7 +407,7 @@ msgid "Charge Cost"
 msgstr "Coût de charge"
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:132
-#: lib/teslamate_web/live/geofence_live/form.html.heex:64
+#: lib/teslamate_web/live/geofence_live/form.html.heex:66
 #, elixir-autogen, elixir-format
 msgid "Cost"
 msgstr "Coût"
@@ -422,6 +427,8 @@ msgstr "Enregistré!"
 msgid "Fetching vehicle data ..."
 msgstr "Récupération des données du véhicule ..."
 
+#: lib/teslamate_web/live/address_live/form.ex:105
+#: lib/teslamate_web/live/address_live/form.html.heex:4
 #: lib/teslamate_web/live/settings_live/index.html.heex:231
 #, elixir-autogen, elixir-format
 msgid "Addresses"
@@ -481,7 +488,7 @@ msgstr "Supercharge gratuite"
 msgid "General Settings"
 msgstr "Réglages généraux"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:96
+#: lib/teslamate_web/live/geofence_live/form.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Session fee"
 msgstr "Prix fixe"
@@ -492,7 +499,7 @@ msgid "Doors open"
 msgstr "Portes ouvertes"
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:140
-#: lib/teslamate_web/live/geofence_live/form.html.heex:72
+#: lib/teslamate_web/live/geofence_live/form.html.heex:74
 #, elixir-autogen, elixir-format
 msgid "Per kWh"
 msgstr "Par kWh"
@@ -502,24 +509,24 @@ msgstr "Par kWh"
 msgid "Total"
 msgstr "Total"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:163
+#: lib/teslamate_web/live/geofence_live/form.html.heex:165
 #, elixir-format, elixir-autogen
 msgid "There is <strong>%{n} charging session</strong> at this location for which no costs have been added yet."
 msgid_plural "There are <strong>%{n} charging sessions</strong> at this location for which no costs have been added yet."
 msgstr[0] "Il existe <strong>%{n} session de charge </strong> à cet endroit pour laquelle aucun coût n'a encore été ajouté."
 msgstr[1] "Il existe <strong>%{n} sessions de charge </strong> à cet endroit pour lesquelles aucun coût n'a encore été ajouté."
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:177
+#: lib/teslamate_web/live/geofence_live/form.html.heex:179
 #, elixir-autogen, elixir-format
 msgid "Add costs retroactively"
 msgstr "Ajouter les coûts rétroactivement"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:155
+#: lib/teslamate_web/live/geofence_live/form.html.heex:157
 #, elixir-autogen, elixir-format
 msgid "Charging Costs"
 msgstr "Coût de Charge"
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:174
+#: lib/teslamate_web/live/geofence_live/form.html.heex:176
 #, elixir-autogen, elixir-format
 msgid "Continue"
 msgstr "Continuer"
@@ -561,7 +568,7 @@ msgid "Trunk is open"
 msgstr "Le coffre est ouvert"
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:141
-#: lib/teslamate_web/live/geofence_live/form.html.heex:73
+#: lib/teslamate_web/live/geofence_live/form.html.heex:75
 #, elixir-autogen, elixir-format
 msgid "Per Minute"
 msgstr "Par minute"
@@ -679,6 +686,11 @@ msgstr "Mode sentinelle"
 #: lib/teslamate_web/live/car_live/summary.html.heex:99
 #, elixir-autogen, elixir-format, fuzzy
 msgid "View car location on Google Maps"
+msgstr ""
+
+#: lib/teslamate_web/live/address_live/form.ex:137
+#, elixir-autogen, elixir-format
+msgid "Address \"%{name}\" updated"
 msgstr ""
 
 #: lib/teslamate_web/live/settings_live/index.html.heex:254

@@ -1,8 +1,9 @@
 defmodule TeslaMate.Locations.Geocoder do
   use Tesla, only: [:get]
 
+  require Logger
+
   @version Mix.Project.config()[:version]
-  @amapKey "56ca3a6d4b51f6d9d39fbb682ef7bb09"
 
   adapter Tesla.Adapter.Finch, name: TeslaMate.HTTP, receive_timeout: 30_000
 
@@ -14,8 +15,11 @@ defmodule TeslaMate.Locations.Geocoder do
   alias TeslaMate.Locations.Address
 
   def reverse_lookup(lat, lon, lang \\ "en") do
+    amapConfig = Application.get_env(:teslamate, :amap_web_api)
+    Logger.debug("AMap Info: #{amapConfig[:api_key]}")
+
     opts = [
-      key: @amapKey,
+      key: amapConfig[:api_key],
       location: "#{lon},#{lat}",
       extensions: "all",
       poitype: "011100|120000",
@@ -24,8 +28,37 @@ defmodule TeslaMate.Locations.Geocoder do
     ]
 
     with {:ok, address_raw} <- query("/geocode/regeo", lang, opts),
-         {:ok, address} <- into_address(address_raw) do
+         {:ok, address} <- into_address(address_raw),
+         address <- check_unknown_address(address, lat, lon) do
       {:ok, address}
+    end
+  end
+
+  defp check_unknown_address(address, lat, lon) do
+    if address.osm_id == "unknown" do
+      address
+      |> Map.put(:latitude, lat)
+      |> Map.put(:longitude, lon)
+    else
+      address
+    end
+  end
+
+  def search_poi(lat, lon, lang \\ "en") do
+    amapConfig = Application.get_env(:teslamate, :amap_web_api)
+    Logger.debug("AMap Info: #{amapConfig[:api_key]}")
+
+    opts = [
+      key: amapConfig[:api_key],
+      location: "#{lon},#{lat}",
+      extensions: "all",
+      types: "011100|120000|060100",
+      radius: 200
+    ]
+
+    with {:ok, address_raw} <- query("/place/around", lang, opts),
+         {:ok, addresses} <- address_list(address_raw) do
+      {:ok, addresses}
     end
   end
 
@@ -63,12 +96,35 @@ defmodule TeslaMate.Locations.Geocoder do
       {:error, reason}
   end
 
+  def get_display_name(address, name) do
+    display_names = [
+      name,
+      get_first(address, [:house_number, "house_number"]),
+      get_first(address, [:road, "road"]),
+      get_first(address, [:neighbourhood, "neighbourhood"]),
+      get_first(address, [:city, "city"]),
+      get_first(address, [:county, "county"]),
+      get_first(address, [:state, "state"]),
+      get_first(address, [:postcode, "postcode"]),
+      get_first(address, [:country, "country"])
+    ]
+
+    Logger.debug("get_display_name: #{inspect(address)} #{get_in(address, ["country"])}")
+
+    list_join(display_names, ", ", "")
+  end
+
+  def get_display_name(address) do
+    get_display_name(address, get_first(address, [:name, "name"]))
+  end
+
   defp query(url, lang, params) do
     case get(url, query: params, headers: [{"Accept-Language", lang}]) do
-      {:ok, %Tesla.Env{status: 200, body: %{"status" => "1", "regeocode" => body}}} ->
-        {:ok, body}
+      {:ok, %Tesla.Env{status: 200, body: %{"status" => "1"} = reason}} ->
+        {:ok, reason}
 
       {:ok, %Tesla.Env{status: 200, body: %{"status" => "0"} = reason}} ->
+        Logger.warning("GET #{url} Failed: query by #{inspect(params)}")
         {:error, Map.put(reason, "error", "Unable to geocode")}
 
       {:ok, %Tesla.Env{body: %{"error" => reason}}} ->
@@ -123,50 +179,87 @@ defmodule TeslaMate.Locations.Geocoder do
     {:error, {:geocoding_failed, reason}}
   end
 
-  defp into_address(raw) do
-    pois = get_in(raw, ["pois"])
-    aois = get_in(raw, ["aois"])
-    street = get_in(raw, ["addressComponent", "streetNumber"])
-    roads = get_in(raw, ["roads"])
-    location = get_point(pois, aois, roads)
+  defp into_address(%{"regeocode" => raw}) do
+    try do
+      pois = get_in(raw, ["pois"])
+      aois = get_in(raw, ["aois"])
+      street = get_in_not_empty_list(raw, ["addressComponent", "streetNumber"])
+      roads = get_in(raw, ["roads"])
+      location = get_point(pois, aois, roads)
 
-    address = %{
-      osm_id: get_in(location, ["id"]),
-      osm_type: get_in(location, ["type"]),
-      latitude: get_in(location, ["latitude"]),
-      longitude: get_in(location, ["longitude"]),
-      name: get_in(location, ["name"]),
-      house_number:
-        street
-        |> get_first(["number"]),
-      road: street |> get_first(@road_aliases),
-      neighbourhood: raw["addressComponent"] |> get_first(["township"]),
-      city: raw["addressComponent"] |> get_first(["district"]),
-      county: raw["addressComponent"] |> get_first(@county_aliases),
-      postcode: get_in(raw, ["addressComponent", "towncode"]),
-      state:
-        raw["addressComponent"]
-        |> get_first(["state", "province", "state_code"]),
-      state_district: get_in(raw, ["address", "state_district"]),
-      country: raw["addressComponent"] |> get_first(["country", "country_name"]),
+      address = %{
+        osm_id: get_in_not_empty_list(location, ["id"]),
+        osm_type: get_in_not_empty_list(location, ["type"]),
+        latitude: get_in_not_empty_list(location, ["latitude"]),
+        longitude: get_in_not_empty_list(location, ["longitude"]),
+        name: get_in_not_empty_list(location, ["name"]),
+        house_number:
+          street
+          |> get_first(["number"]),
+        road: street |> get_first(@road_aliases),
+        neighbourhood: raw["addressComponent"] |> get_in_not_empty_list(["township"]),
+        city: raw["addressComponent"] |> get_first(["district"]),
+        county: raw["addressComponent"] |> get_first(@county_aliases),
+        postcode: get_in_not_empty_list(raw, ["addressComponent", "towncode"]),
+        state:
+          raw["addressComponent"]
+          |> get_first(["state", "province", "state_code"]),
+        state_district: get_in_not_empty_list(raw, ["address", "state_district"]),
+        country: raw["addressComponent"] |> get_first(["country", "country_name"]),
+        raw: raw
+      }
+
+      address = Map.put(address, :display_name, get_display_name(address))
+
+      {:ok, address}
+    rescue
+      e ->
+        Logger.warning(~c"Format address fail: #{inspect(e)}, by: #{inspect(raw)}")
+        {:error, e}
+    end
+  end
+
+  defp address_list(%{"error" => "Unable to geocode"} = raw) do
+    unknown_address = %{
+      display_name: "Unknown",
+      osm_type: "unknown",
+      osm_id: 0,
+      latitude: 0.0,
+      longitude: 0.0,
       raw: raw
     }
 
-    display_names = [
-      address.name,
-      address.house_number,
-      address.road,
-      address.neighbourhood,
-      address.city,
-      address.county,
-      address.state,
-      address.postcode,
-      address.country
-    ]
+    {:ok, unknown_address}
+  end
 
-    address = Map.put(address, :display_name, list_join(display_names, ", ", ""))
+  defp address_list(%{"error" => reason}) do
+    {:error, {:geocoding_failed, reason}}
+  end
 
-    {:ok, address}
+  defp address_list(%{"pois" => pois}) do
+    try do
+      addresses =
+        pois
+        |> Enum.map(fn location ->
+          lnglat = String.split(get_in(location, ["location"]), ",")
+
+          address = %{
+            osm_type: "node",
+            osm_id: get_in_not_empty_list(location, ["id"]),
+            latitude: Enum.at(lnglat, 1),
+            longitude: Enum.at(lnglat, 0),
+            name: get_in_not_empty_list(location, ["name"])
+          }
+
+          address
+        end)
+
+      {:ok, addresses}
+    rescue
+      e ->
+        Logger.warning(~c"Format address fail: #{inspect(e)}, by: #{inspect(pois)}")
+        {:error, e}
+    end
   end
 
   defp list_join([item | items], split, str) do
@@ -262,15 +355,15 @@ defmodule TeslaMate.Locations.Geocoder do
       _ ->
         %{
           "name" => "未知",
-          "id" => "unkonw",
+          "id" => "unknown",
           "latitude" => 0.0,
           "longitude" => 0.0,
-          "type" => "unkonw"
+          "type" => "unknown"
         }
     end
   end
 
-  defp get_loaction(_fun_name, nil), do: {:error, nil}
+  defp get_loaction(_fun_name, nil), do: nil
   defp get_loaction(_fun_name, []), do: nil
 
   defp get_loaction(fun_name, [item | items]) do
@@ -279,8 +372,15 @@ defmodule TeslaMate.Locations.Geocoder do
 
   defp get_point(pois, aois, roads) do
     with nil <- get_loaction(:get_charge_poi, pois),
-         nil <- get_loaction(:get_aoi, aois) do
-      get_loaction(:get_road, roads)
+         nil <- get_loaction(:get_aoi, aois),
+         nil <- get_loaction(:get_road, roads) do
+      %{
+        "name" => "未知",
+        "id" => "unknown",
+        "latitude" => 0.0,
+        "longitude" => 0.0,
+        "type" => "unknown"
+      }
     end
   end
 

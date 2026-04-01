@@ -18,12 +18,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
+  "id": 1,
   "links": [
     {
       "icon": "doc",
       "tags": [],
       "targetBlank": true,
-      "title": "Select last three drives",
+      "title": "最近三次行程",
       "type": "link",
       "url": "/d/FkUpJpQZk/trip?from=$from"
     },
@@ -200,7 +201,7 @@
       ],
       "title": "",
       "transparent": true,
-      "type": "geomap"
+      "type": "guigu-trackmapinamap-panel"
     },
     {
       "datasource": {
@@ -234,7 +235,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Mileage"
+                "value": "里程"
               }
             ]
           },
@@ -354,6 +355,10 @@
                   "fixedColor": "#73BF69",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "displayName",
+                "value": "AC充电"
               }
             ]
           },
@@ -369,6 +374,10 @@
                   "fixedColor": "#FADE2A",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "displayName",
+                "value": "DC充电"
               }
             ]
           },
@@ -384,6 +393,10 @@
                   "fixedColor": "#5794F2",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "displayName",
+                "value": "行驶"
               }
             ]
           }
@@ -531,7 +544,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Ø Speed excl. breaks"
+                "value": "排除停车"
               }
             ]
           },
@@ -649,7 +662,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Ø Speed incl. DC charging"
+                "value": "包含DC充电"
               }
             ]
           },
@@ -768,7 +781,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Ø Consumption (net)"
+                "value": "净能耗"
               }
             ]
           },
@@ -888,7 +901,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Ø Consumption (gross)"
+                "value": "总能耗"
               }
             ]
           },
@@ -1018,7 +1031,20 @@
           },
           "unit": "none"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Charging Cost"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "费用"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
@@ -1311,7 +1337,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "WITH charges_current AS (\n  SELECT\n\t\tcp.id,\n\t\tcp.charge_energy_added as energy_added,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN 'Total Energy added (DC)'\n\t\t\t\t ELSE 'Total Energy added (AC)'\n\t\tEND AS metric\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0\n  \tAND ($__timeFilter(start_date) OR $__timeFilter(end_date))\n  GROUP BY 1,2\n)\n\nSELECT metric, sum(energy_added) AS energy_added\nFROM charges_current\nGROUP BY 1\nORDER BY 1 DESC;",
+          "rawSql": "WITH charges_current AS (\n  SELECT\n\t\tcp.id,\n\t\tcp.charge_energy_added as energy_added,\n\t\tCASE WHEN NULLIF(mode() within group (order by charger_phases),0) is null THEN '总补能 (DC)'\n\t\t\t\t ELSE '总补能 (AC)'\n\t\tEND AS metric\n\tFROM charging_processes cp\n  RIGHT JOIN charges ON cp.id = charges.charging_process_id\n  WHERE\n\t  cp.car_id = $car_id\n\t  AND cp.charge_energy_added > 0\n  \tAND ($__timeFilter(start_date) OR $__timeFilter(end_date))\n  GROUP BY 1,2\n)\n\nSELECT metric, sum(energy_added) AS energy_added\nFROM charges_current\nGROUP BY 1\nORDER BY 1 DESC;",
           "refId": "B",
           "sql": {
             "columns": [
@@ -1367,43 +1393,44 @@
             "lineWidth": 0,
             "spanNulls": false
           },
+          "displayName": "状态",
           "mappings": [
             {
               "options": {
                 "0": {
                   "color": "#6ED0E0",
                   "index": 0,
-                  "text": "online"
+                  "text": "在线"
                 },
                 "1": {
                   "color": "#8F3BB8",
                   "index": 1,
-                  "text": "driving"
+                  "text": "行驶"
                 },
                 "2": {
                   "color": "#F2CC0C",
                   "index": 2,
-                  "text": "charging"
+                  "text": "充电"
                 },
                 "3": {
                   "color": "#FFB357",
                   "index": 3,
-                  "text": "offline"
+                  "text": "离线"
                 },
                 "4": {
                   "color": "#56A64B",
                   "index": 4,
-                  "text": "asleep"
+                  "text": "休眠"
                 },
                 "5": {
                   "color": "#6ED0E0",
                   "index": 5,
-                  "text": "online"
+                  "text": "在线"
                 },
                 "6": {
                   "color": "#E02F44",
                   "index": 6,
-                  "text": "updating"
+                  "text": "更新"
                 },
                 "null": {
                   "index": 7,
@@ -1531,7 +1558,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Date"
+                "value": "时间"
               },
               {
                 "id": "unit",
@@ -1561,7 +1588,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ø Consumption (net)"
+                "value": "能耗"
               },
               {
                 "id": "unit",
@@ -1633,7 +1660,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Start"
+                "value": "起点"
               },
               {
                 "id": "links",
@@ -1659,7 +1686,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Destination"
+                "value": "终点"
               },
               {
                 "id": "links",
@@ -1685,7 +1712,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Duration"
+                "value": "用时"
               },
               {
                 "id": "unit",
@@ -1856,7 +1883,7 @@
           }
         }
       ],
-      "title": "Drives",
+      "title": "驾驶",
       "type": "table"
     },
     {
@@ -1906,7 +1933,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Date"
+                "value": "时间"
               },
               {
                 "id": "unit",
@@ -1936,7 +1963,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Energy added"
+                "value": "补能"
+              },
+              {
+                "id": "unit",
+                "value": "kwatth"
               },
               {
                 "id": "decimals",
@@ -2004,7 +2035,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Duration"
+                "value": "用时"
               },
               {
                 "id": "unit",
@@ -2028,7 +2059,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Cost"
+                "value": "费用"
               },
               {
                 "id": "unit",
@@ -2086,7 +2117,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Location"
+                "value": "充电站"
               },
               {
                 "id": "links",
@@ -2112,7 +2143,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Range gained"
+                "value": "增加里程"
               },
               {
                 "id": "unit",
@@ -2136,7 +2167,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ø Power"
+                "value": "平均功率"
               },
               {
                 "id": "unit",
@@ -2222,7 +2253,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Energy used"
+                "value": "消耗"
+              },
+              {
+                "id": "unit",
+                "value": "kwatth"
               },
               {
                 "id": "decimals",
@@ -2296,7 +2331,7 @@
           }
         }
       ],
-      "title": "Charges",
+      "title": "充电",
       "transformations": [
         {
           "id": "merge",
@@ -2429,7 +2464,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Range (rated)"
+                "value": "续航"
               }
             ]
           }
@@ -2490,7 +2525,7 @@
           }
         }
       ],
-      "title": "Battery Level & Range",
+      "title": "电量 & 续航",
       "type": "timeseries"
     },
     {
@@ -2586,7 +2621,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Elevation"
+                "value": "海拔"
               },
               {
                 "id": "color",
@@ -2654,7 +2689,7 @@
           }
         }
       ],
-      "title": "Elevation",
+      "title": "海拔",
       "type": "timeseries"
     }
   ],
@@ -2796,7 +2831,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Trip",
+  "title": "里程小计",
   "uid": "FkUpJpQZk",
   "version": 1,
   "weekStart": ""

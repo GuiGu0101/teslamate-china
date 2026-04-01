@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
+  "type": "app",
+  "name": "Amap App",
+  "id": "guigu-amap-app",
+  "info": {
+    "keywords": ["app"],
+    "description": "Amap",
+    "author": {
+      "name": "Guigu"
+    },
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "screenshots": [],
+    "version": "1.0.2",
+    "updated": "2024-11-04"
+  },
+  "includes": [
+    {"type": "panel", "name": "TrackMap"},
+    {"type": "panel", "name": "TrackMap2"}
+  ],
+  "dependencies": {
+    "grafanaDependency": ">=10.0.3",
+    "plugins": []
+  }
+}

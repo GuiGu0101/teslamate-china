@@ -22,7 +22,9 @@
       <div class="field">
         <div class="control">
           <div id="map_container" phx-update="ignore">
-            <figure id="map" style="height: 400px; position: relative;" phx-hook="Map"></figure>
+            <%!-- <figure id="map" style="height: 400px; position: relative;" phx-hook="Map"></figure>  --%>
+            <figure id="gdmap" style="height: 400px; position: relative;" phx-hook="GDMap">
+            </figure>
           </div>
           <%= hidden_input(f, :latitude) %>
           <%= hidden_input(f, :longitude) %>

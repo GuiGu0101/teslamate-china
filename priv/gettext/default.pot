@@ -70,6 +70,7 @@ msgstr ""
 msgid "Sentry Mode"
 msgstr ""
 
+#: lib/teslamate_web/live/address_live/form.html.heex:3
 #: lib/teslamate_web/live/car_live/index.ex:15
 #: lib/teslamate_web/live/charge_live/cost.html.heex:3
 #: lib/teslamate_web/live/geofence_live/form.html.heex:3
@@ -82,7 +83,7 @@ msgstr ""
 
 #: lib/teslamate_web/live/settings_live/index.ex:21
 #: lib/teslamate_web/live/settings_live/index.html.heex:4
-#: lib/teslamate_web/templates/layout/root.html.heex:119
+#: lib/teslamate_web/templates/layout/root.html.heex:125
 #, elixir-autogen, elixir-format
 msgid "Settings"
 msgstr ""
@@ -127,8 +128,9 @@ msgstr ""
 msgid "Units"
 msgstr ""
 
+#: lib/teslamate_web/live/address_live/form.html.heex:127
 #: lib/teslamate_web/live/charge_live/cost.html.heex:165
-#: lib/teslamate_web/live/geofence_live/form.html.heex:124
+#: lib/teslamate_web/live/geofence_live/form.html.heex:126
 #, elixir-autogen, elixir-format
 msgid "Back"
 msgstr ""
@@ -142,7 +144,7 @@ msgstr ""
 #: lib/teslamate_web/live/geofence_live/form.html.heex:4
 #: lib/teslamate_web/live/geofence_live/index.ex:22
 #: lib/teslamate_web/live/geofence_live/index.html.heex:5
-#: lib/teslamate_web/templates/layout/root.html.heex:113
+#: lib/teslamate_web/templates/layout/root.html.heex:119
 #, elixir-autogen, elixir-format
 msgid "Geo-Fences"
 msgstr ""
@@ -152,13 +154,14 @@ msgstr ""
 msgid "Idle Time Before Trying to Sleep"
 msgstr ""
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:46
-#: lib/teslamate_web/live/geofence_live/form.html.heex:52
+#: lib/teslamate_web/live/geofence_live/form.html.heex:48
+#: lib/teslamate_web/live/geofence_live/form.html.heex:54
 #: lib/teslamate_web/live/geofence_live/index.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
 
+#: lib/teslamate_web/live/address_live/form.html.heex:16
 #: lib/teslamate_web/live/geofence_live/form.html.heex:19
 #: lib/teslamate_web/live/geofence_live/index.html.heex:24
 #, elixir-autogen, elixir-format
@@ -170,14 +173,16 @@ msgstr ""
 msgid "Radius"
 msgstr ""
 
+#: lib/teslamate_web/live/address_live/form.html.heex:130
 #: lib/teslamate_web/live/charge_live/cost.html.heex:168
-#: lib/teslamate_web/live/geofence_live/form.html.heex:128
+#: lib/teslamate_web/live/geofence_live/form.html.heex:130
 #, elixir-autogen, elixir-format
 msgid "Save"
 msgstr ""
 
+#: lib/teslamate_web/live/address_live/form.html.heex:131
 #: lib/teslamate_web/live/charge_live/cost.html.heex:169
-#: lib/teslamate_web/live/geofence_live/form.html.heex:129
+#: lib/teslamate_web/live/geofence_live/form.html.heex:131
 #: lib/teslamate_web/live/signin_live/index.html.heex:84
 #, elixir-autogen, elixir-format
 msgid "Saving..."
@@ -343,7 +348,7 @@ msgid "Remaining Time"
 msgstr ""
 
 #: lib/teslamate_web/live/settings_live/index.html.heex:349
-#: lib/teslamate_web/templates/layout/root.html.heex:95
+#: lib/teslamate_web/templates/layout/root.html.heex:101
 #, elixir-autogen, elixir-format
 msgid "Dashboards"
 msgstr ""
@@ -402,7 +407,7 @@ msgid "Charge Cost"
 msgstr ""
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:132
-#: lib/teslamate_web/live/geofence_live/form.html.heex:64
+#: lib/teslamate_web/live/geofence_live/form.html.heex:66
 #, elixir-autogen, elixir-format
 msgid "Cost"
 msgstr ""
@@ -422,6 +427,8 @@ msgstr ""
 msgid "Fetching vehicle data ..."
 msgstr ""
 
+#: lib/teslamate_web/live/address_live/form.ex:113
+#: lib/teslamate_web/live/address_live/form.html.heex:4
 #: lib/teslamate_web/live/settings_live/index.html.heex:231
 #, elixir-autogen, elixir-format
 msgid "Addresses"
@@ -481,7 +488,7 @@ msgstr ""
 msgid "General Settings"
 msgstr ""
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:96
+#: lib/teslamate_web/live/geofence_live/form.html.heex:98
 #, elixir-autogen, elixir-format
 msgid "Session fee"
 msgstr ""
@@ -492,7 +499,7 @@ msgid "Doors open"
 msgstr ""
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:140
-#: lib/teslamate_web/live/geofence_live/form.html.heex:72
+#: lib/teslamate_web/live/geofence_live/form.html.heex:74
 #, elixir-autogen, elixir-format
 msgid "Per kWh"
 msgstr ""
@@ -502,24 +509,24 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:163
+#: lib/teslamate_web/live/geofence_live/form.html.heex:165
 #, elixir-format, elixir-autogen
 msgid "There is <strong>%{n} charging session</strong> at this location for which no costs have been added yet."
 msgid_plural "There are <strong>%{n} charging sessions</strong> at this location for which no costs have been added yet."
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:177
+#: lib/teslamate_web/live/geofence_live/form.html.heex:179
 #, elixir-autogen, elixir-format
 msgid "Add costs retroactively"
 msgstr ""
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:155
+#: lib/teslamate_web/live/geofence_live/form.html.heex:157
 #, elixir-autogen, elixir-format
 msgid "Charging Costs"
 msgstr ""
 
-#: lib/teslamate_web/live/geofence_live/form.html.heex:174
+#: lib/teslamate_web/live/geofence_live/form.html.heex:176
 #, elixir-autogen, elixir-format
 msgid "Continue"
 msgstr ""
@@ -545,7 +552,7 @@ msgid "GitHub"
 msgstr ""
 
 #: lib/teslamate_web/live/settings_live/index.html.heex:380
-#: lib/teslamate_web/templates/layout/root.html.heex:188
+#: lib/teslamate_web/templates/layout/root.html.heex:194
 #, elixir-autogen, elixir-format
 msgid "Update available"
 msgstr ""
@@ -561,7 +568,7 @@ msgid "Trunk is open"
 msgstr ""
 
 #: lib/teslamate_web/live/charge_live/cost.html.heex:141
-#: lib/teslamate_web/live/geofence_live/form.html.heex:73
+#: lib/teslamate_web/live/geofence_live/form.html.heex:75
 #, elixir-autogen, elixir-format
 msgid "Per Minute"
 msgstr ""
@@ -611,22 +618,22 @@ msgstr ""
 msgid "Downloading update"
 msgstr ""
 
-#: lib/teslamate_web/templates/layout/root.html.heex:145
+#: lib/teslamate_web/templates/layout/root.html.heex:151
 #, elixir-autogen, elixir-format
 msgid "No encryption key provided"
 msgstr ""
 
-#: lib/teslamate_web/templates/layout/root.html.heex:165
+#: lib/teslamate_web/templates/layout/root.html.heex:171
 #, elixir-autogen, elixir-format
 msgid "For more information, see the updated installation guides on %{link}"
 msgstr ""
 
-#: lib/teslamate_web/templates/layout/root.html.heex:158
+#: lib/teslamate_web/templates/layout/root.html.heex:164
 #, elixir-autogen, elixir-format
 msgid "The automatically generated encryption key used for the current session can be found <strong>in the application logs</strong>."
 msgstr ""
 
-#: lib/teslamate_web/templates/layout/root.html.heex:151
+#: lib/teslamate_web/templates/layout/root.html.heex:157
 #, elixir-autogen, elixir-format
 msgid "To ensure that your <strong>Tesla API tokens are stored securely</strong>, an encryption key must be provided to TeslaMate via the <code>ENCRYPTION_KEY</code> environment variable. Otherwise, a <strong>login will be required after every restart</strong>."
 msgstr ""
@@ -704,4 +711,9 @@ msgstr ""
 #: lib/teslamate_web/live/settings_live/index.html.heex:251
 #, elixir-autogen, elixir-format
 msgid "Theme"
+msgstr ""
+
+#: lib/teslamate_web/live/address_live/form.ex:145
+#, elixir-autogen, elixir-format
+msgid "Address \"%{name}\" updated"
 msgstr ""

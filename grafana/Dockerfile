@@ -7,6 +7,9 @@ ENV GF_ANALYTICS_REPORTING_ENABLED=false \
     GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES=false \
     GF_AUTH_ANONYMOUS_ENABLED=false \
     GF_AUTH_BASIC_ENABLED=false \
+    GF_PATHS_PLUGINS="/var/lib/grafana-plugins" \
+    # AMAP_API_KEI=772348bfb6f71f4a02e664e7f728243d \
+    # AMAP_JS_CODE=b8abb9a9376e1ec9ecb33734adf13fea \
     GF_SECURITY_ADMIN_PASSWORD=admin \
     GF_SECURITY_ADMIN_USER=admin \
     GF_SECURITY_ALLOW_EMBEDDING=true \
@@ -38,5 +41,7 @@ COPY dashboards.yml /etc/grafana/provisioning/dashboards/
 COPY dashboards/internal/*.json /dashboards_internal/
 COPY dashboards/reports/*.json /dashboards_reports/
 COPY dashboards/*.json /dashboards/
+COPY plugins/dist/ /var/lib/grafana-plugins/guigu-amap-app
+COPY apps.yaml /etc/grafana/provisioning/plugins/
 
 EXPOSE 3000

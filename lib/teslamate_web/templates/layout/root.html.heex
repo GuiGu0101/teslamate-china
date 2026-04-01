@@ -62,6 +62,12 @@
       src={Routes.static_path(@conn, "/assets/app.js")}
     >
     </script>
+    <script type="text/javascript">
+      window._AMapSecurityConfig = {
+        securityJsCode: '<%= @conn.assigns.amap_config[:js_code] %>',
+        apiKey: '<%= @conn.assigns.amap_config[:api_key] %>',
+      }
+    </script>
   </head>
   <body tabIndex="0">
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -92,7 +98,7 @@
             <%= if grafana_url = @conn.assigns.settings.grafana_url do %>
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link is-arrowless">
-                  <span class="icon"><i class="mdi mdi-view-dashboard"></i></span>&nbsp;<span><%= gettext "Dashboards" %></span>
+                  <span class="icon"><i class="mdi mdi-view-dashboard"></i></span><span><%= gettext "Dashboards" %></span>
                 </a>
                 <div class="navbar-dropdown is-boxed">
                   <%= for %{"title" => title, "uid" => uid} <- list_dashboards() do %>
@@ -108,15 +114,21 @@
             <% end %>
             <.link
               navigate={Routes.live_path(@conn, TeslaMateWeb.GeoFenceLive.Index)}
+              class="navbar-item"
+            >
+              <span class="icon"><i class="mdi mdi-map-marker-radius"></i></span><span><%= gettext("Geo-Fences") %></span>
+            </.link>
+            <.link
+              navigate={Routes.live_path(@conn, TeslaMateWeb.AddressLive.Index)}
               class="navbar-item  mr-5"
             >
-              <span class="icon"><i class="mdi mdi-map-marker-radius"></i></span>&nbsp;<span><%= gettext("Geo-Fences") %></span>
+              <span class="icon"><i class="mdi mdi-map"></i></span><span><%= gettext("Addresses") %></span>
             </.link>
             <.link
               navigate={Routes.live_path(@conn, TeslaMateWeb.SettingsLive.Index)}
               class="navbar-item  mr-5"
             >
-              <span class="icon"><i class="mdi mdi-cog"></i></span>&nbsp;<span><%= gettext("Settings") %></span>
+              <span class="icon"><i class="mdi mdi-cog"></i></span><span><%= gettext("Settings") %></span>
             </.link>
           </div>
         </div>

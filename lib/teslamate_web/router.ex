@@ -24,6 +24,7 @@ defmodule TeslaMateWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_settings
+    plug :fetch_amap_js_api_config
   end
 
   pipeline :api do
@@ -42,6 +43,9 @@ defmodule TeslaMateWeb.Router do
       live "/geo-fences", GeoFenceLive.Index
       live "/geo-fences/new", GeoFenceLive.Form
       live "/geo-fences/:id/edit", GeoFenceLive.Form
+      live "/address", AddressLive.Index
+      live "/address/:id/edit", AddressLive.Form
+      live "/address/new", AddressLive.Form
       live "/charge-cost/:id", ChargeLive.Cost
       live "/import", ImportLive.Index
     end
@@ -60,5 +64,12 @@ defmodule TeslaMateWeb.Router do
     conn
     |> assign(:settings, settings)
     |> put_session(:settings, settings)
+  end
+
+  defp fetch_amap_js_api_config(conn, _opts) do
+    amap_config = Application.get_env(:teslamate, :amap_js_api)
+
+    conn
+    |> assign(:amap_config, amap_config)
   end
 end

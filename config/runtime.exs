@@ -50,7 +50,7 @@ defmodule Util do
   end
 
   def choose_http_binding_address() do
-    port = Util.get_env("PORT", prod: "4000", dev: "4000", test: "4002")
+    port = Util.get_env("PORT", prod: "4000", dev: "4001", test: "4002")
     defaults = [transport_options: [socket_opts: [:inet6]], port: port]
 
     case System.get_env("HTTP_BINDING_ADDRESS", "") do
@@ -101,11 +101,18 @@ end
 config :teslamate,
   default_geofence: System.get_env("DEFAULT_GEOFENCE")
 
+config :teslamate, :amap_web_api,
+  api_key: System.get_env("AMAP_WEB_API_KEY", "56ca3a6d4b51f6d9d39fbb682ef7bb09")
+
+config :teslamate, :amap_js_api,
+  api_key: System.get_env("AMAP_JS_API_KEY", "772348bfb6f71f4a02e664e7f728243d"),
+  js_code: System.get_env("AMAP_JS_API_CODE", "b8abb9a9376e1ec9ecb33734adf13fea")
+
 case System.get_env("DATABASE_SOCKET_DIR") do
   nil ->
     config :teslamate, TeslaMate.Repo,
-      username: Util.fetch_env!("DATABASE_USER", all: "postgres"),
-      password: Util.fetch_env!("DATABASE_PASS", all: "postgres"),
+      username: Util.fetch_env!("DATABASE_USER", all: "teslamate"),
+      password: Util.fetch_env!("DATABASE_PASS", all: "qJLwScSq6WY8lZRY"),
       hostname: Util.fetch_env!("DATABASE_HOST", all: "localhost"),
       port: System.get_env("DATABASE_PORT", "5432")
 
@@ -184,6 +191,7 @@ end
 
 config :teslamate, :srtm_cache, System.get_env("SRTM_CACHE", ".srtm_cache")
 
-config :teslamate, TeslaMate.Vault, key: Util.get_env("ENCRYPTION_KEY", test: "secret")
+config :teslamate, TeslaMate.Vault,
+  key: Util.get_env("ENCRYPTION_KEY", dev: "pMWSVzIWhkZo81W7", test: "secret")
 
 config :tzdata, :data_dir, System.get_env("TZDATA_DIR", "/tmp")

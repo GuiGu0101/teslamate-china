@@ -127,7 +127,7 @@
           }
         }
       ],
-      "title": "Updates",
+      "title": "更新次数",
       "type": "stat"
     },
     {
@@ -207,13 +207,13 @@
           }
         }
       ],
-      "title": "Median time between updates",
+      "title": "平均更新间隔",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "grafana-postgresql-datasource",
-        "uid": "TeslaMate"
+        "uid": "PC98BA2F4D77E1A42"
       },
       "fieldConfig": {
         "defaults": {
@@ -256,7 +256,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Date"
+                "value": "更新时间"
               },
               {
                 "id": "unit",
@@ -276,7 +276,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Duration"
+                "value": "用时"
               },
               {
                 "id": "unit",
@@ -296,7 +296,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Since Previous Update"
+                "value": "距上一次更新"
               }
             ]
           },
@@ -308,7 +308,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Installed Version"
+                "value": "安装版本号"
               },
               {
                 "id": "custom.align",
@@ -350,7 +350,7 @@
               },
               {
                 "id": "displayName",
-                "value": "# of Charges"
+                "value": "# 充电次数"
               }
             ]
           },
@@ -374,7 +374,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Ø Ideal range"
+                "value": "平均续航里程"
               }
             ]
           },
@@ -398,7 +398,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Ø Rated range"
+                "value": "平均续航里程"
               }
             ]
           },
@@ -500,7 +500,7 @@
           }
         }
       ],
-      "title": "Updates",
+      "title": "更新记录",
       "type": "table"
     }
   ],
@@ -587,6 +587,7 @@
     "from": "now-10y",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "refresh_intervals": [
       "10s",
@@ -601,7 +602,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Updates",
+  "title": "更新记录",
   "uid": "IiC07mgWz",
   "version": 1,
   "weekStart": ""

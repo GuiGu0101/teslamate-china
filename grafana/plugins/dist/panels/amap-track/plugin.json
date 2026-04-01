@@ -1,0 +1,26 @@
+{
+  "type": "panel",
+  "name": "TrackMap In Amap",
+  "id": "guigu-trackmapinamap-panel",
+  "info": {
+    "keywords": ["panel"],
+    "description": "A plugin for Grafana that visualizes GPS points as a line on an interactive map.",
+    "author": {
+      "name": "Guigu"
+    },
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "links": [],
+    "screenshots": [
+      {"name": "Show current selection as a dot on the map", "path": "img/topo-crosshair.jpg"},
+      {"name": "Zoom in by selecting a range of points", "path": "img/topo-boxselect.jpg"},
+      {"name": "Chose what map to display the data on", "path": "img/satellite-picker.jpg"}
+    ]
+  },
+  "dependencies": {
+    "grafanaDependency": ">=9.0.3",
+    "plugins": []
+  }
+}

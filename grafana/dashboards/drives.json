@@ -24,6 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 1,
   "links": [
     {
       "icon": "dashboard",
@@ -54,7 +55,7 @@
       },
       "id": 3,
       "panels": [],
-      "title": "Summary of this period",
+      "title": "摘要",
       "type": "row"
     },
     {
@@ -62,6 +63,7 @@
         "type": "datasource",
         "uid": "-- Dashboard --"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -98,7 +100,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Total Energy consumed (net):"
+                "value": "耗能:"
               }
             ]
           }
@@ -198,7 +200,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Total Duration:"
+                "value": "驾驶时长:"
               }
             ]
           }
@@ -317,7 +319,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Total Distance logged:"
+                "value": "行驶距离 (km):"
               }
             ]
           }
@@ -422,7 +424,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Ø Consumption (net):"
+                "value": "平均能耗:"
               }
             ]
           },
@@ -438,7 +440,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Ø Consumption (net):"
+                "value": "平均能耗:"
               }
             ]
           }
@@ -543,7 +545,7 @@
     {
       "datasource": {
         "type": "grafana-postgresql-datasource",
-        "uid": "TeslaMate"
+        "uid": "PC98BA2F4D77E1A42"
       },
       "fieldConfig": {
         "defaults": {
@@ -582,7 +584,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Date"
+                "value": "时间"
               },
               {
                 "id": "unit",
@@ -592,7 +594,7 @@
                 "id": "links",
                 "value": [
                   {
-                    "targetBlank": false,
+                    "targetBlank": true,
                     "title": "View drive details",
                     "url": "/d/zm7wN6Zgz/drive-details?from=${__data.fields.start_date_ts.numeric}&to=${__data.fields.end_date_ts.numeric}&var-car_id=${__data.fields.car_id.numeric}&var-drive_id=${__data.fields.drive_id.numeric}"
                   }
@@ -600,7 +602,7 @@
               },
               {
                 "id": "custom.minWidth",
-                "value": 210
+                "value": 185
               }
             ]
           },
@@ -612,7 +614,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ø Consumption (net)"
+                "value": "能耗"
               },
               {
                 "id": "unit",
@@ -620,27 +622,7 @@
               },
               {
                 "id": "custom.minWidth",
-                "value": 165
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "consumption_kwh_mi"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Ø Consumption (net)"
-              },
-              {
-                "id": "unit",
-                "value": "Wh/mi"
-              },
-              {
-                "id": "custom.minWidth",
-                "value": 165
+                "value": 95
               }
             ]
           },
@@ -652,7 +634,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Distance"
+                "value": "距离"
               },
               {
                 "id": "unit",
@@ -676,7 +658,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Energy consumed (net)"
+                "value": "耗能"
               },
               {
                 "id": "unit",
@@ -714,7 +696,7 @@
               },
               {
                 "id": "custom.minWidth",
-                "value": 180
+                "value": 95
               }
             ]
           },
@@ -726,7 +708,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Start"
+                "value": "起点"
               },
               {
                 "id": "links",
@@ -752,7 +734,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Destination"
+                "value": "终点"
               },
               {
                 "id": "links",
@@ -778,7 +760,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Temp"
+                "value": "气温"
               },
               {
                 "id": "unit",
@@ -828,7 +810,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Duration"
+                "value": "时长"
               },
               {
                 "id": "unit",
@@ -852,7 +834,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Efficiency"
+                "value": "效率"
               },
               {
                 "id": "unit",
@@ -928,7 +910,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ø Speed"
+                "value": "平均时速"
               },
               {
                 "id": "unit",
@@ -1074,7 +1056,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "max Speed"
+                "value": "最大时速"
               },
               {
                 "id": "unit",
@@ -1232,7 +1214,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "max Power"
+                "value": "最大功率"
               },
               {
                 "id": "unit",
@@ -1289,7 +1271,7 @@
           }
         }
       ],
-      "title": "Drive",
+      "title": "行程",
       "type": "table"
     },
     {
@@ -1302,7 +1284,7 @@
       },
       "id": 10,
       "panels": [],
-      "title": "General information (All drives)",
+      "title": "通用信息(所有驾驶)",
       "type": "row"
     },
     {
@@ -1323,7 +1305,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "From here you can check if you have \nincomplete data of **Drives** (drives without ending date)\nIf so, you may follow the official \nguide by <a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data' target='_blank'>Manually fixing data</a>",
+        "content": "在这里你可以检查驾驶数据是否完整，即有的驾驶数据没有结束时间。\n如果有，可以参考官方文档 <a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data' target='_blank'>手动修复数据</a>",
         "mode": "markdown"
       },
       "pluginVersion": "12.4.0",
@@ -1407,7 +1389,7 @@
           }
         }
       ],
-      "title": "Incomplete Drives 🛣️",
+      "title": "不完整驾驶记录 🛣️",
       "type": "table"
     }
   ],
@@ -1600,7 +1582,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Drives",
+  "title": "行程统计",
   "uid": "Y8upc6ZRk",
   "version": 1,
   "weekStart": ""

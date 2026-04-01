@@ -196,8 +196,16 @@ defmodule TeslaApi.Vehicle.State do
         active_route_traffic_minutes_delay: drive["active_route_traffic_minutes_delay"],
         gps_as_of: drive["gps_as_of"],
         heading: drive["heading"],
-        latitude: if(drive["native_location_supported"],do: drive["native_latitude"], else: drive["latitude"]),
-        longitude: if(drive["native_location_supported"],do: drive["native_longitude"], else: drive["longitude"]),
+        latitude:
+          if(drive["native_location_supported"],
+            do: drive["native_latitude"],
+            else: drive["latitude"]
+          ),
+        longitude:
+          if(drive["native_location_supported"],
+            do: drive["native_longitude"],
+            else: drive["longitude"]
+          ),
         native_type: drive["native_type"],
         power: drive["power"],
         shift_state: drive["shift_state"],

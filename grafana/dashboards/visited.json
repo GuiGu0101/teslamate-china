@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 1,
   "links": [
     {
       "icon": "dashboard",
@@ -83,7 +84,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 21,
+        "h": 16,
         "w": 24,
         "x": 0,
         "y": 1
@@ -91,6 +92,7 @@
       "id": 2,
       "maxDataPoints": 10000000,
       "options": {
+        "autoZoom": true,
         "basemap": {
           "config": {},
           "name": "Layer 0",
@@ -152,6 +154,10 @@
             "type": "route"
           }
         ],
+        "lineColor": "red",
+        "maxDataPoints": 500,
+        "pointColor": "royalblue",
+        "scrollWheelZoom": true,
         "tooltip": {
           "mode": "none"
         },
@@ -196,7 +202,7 @@
         }
       ],
       "title": "",
-      "type": "geomap"
+      "type": "guigu-trackmapinamap-panel"
     },
     {
       "datasource": {
@@ -219,13 +225,26 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mileage"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "行驶里程"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
         "w": 5,
         "x": 0,
-        "y": 22
+        "y": 17
       },
       "id": 5,
       "options": {
@@ -314,6 +333,10 @@
               {
                 "id": "unit",
                 "value": "kwatth"
+              },
+              {
+                "id": "displayName",
+                "value": "总充入电量"
               }
             ]
           },
@@ -326,6 +349,10 @@
               {
                 "id": "unit",
                 "value": "kwatth"
+              },
+              {
+                "id": "displayName",
+                "value": "总充电量"
               }
             ]
           },
@@ -338,6 +365,10 @@
               {
                 "id": "unit",
                 "value": "percent"
+              },
+              {
+                "id": "displayName",
+                "value": "充电效率"
               }
             ]
           }
@@ -347,7 +378,7 @@
         "h": 2,
         "w": 14,
         "x": 5,
-        "y": 22
+        "y": 17
       },
       "id": 6,
       "maxDataPoints": 100,
@@ -425,13 +456,26 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Charging Cost"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "总充电费用"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
         "w": 5,
         "x": 19,
-        "y": 22
+        "y": 17
       },
       "id": 7,
       "maxDataPoints": 100,
@@ -555,7 +599,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Visited",
+  "title": "行程",
   "uid": "RG_DxSmgk",
   "version": 1,
   "weekStart": ""

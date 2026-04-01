@@ -1,0 +1,10 @@
+apiVersion: 1
+
+apps:
+  - type: "guigu-amap-app"
+    org_id: 1
+    org_name: "guigu"
+    disabled: false
+    jsonData:
+      apiKey: $AMAP_API_KEI
+      jsCode: $AMAP_JS_CODE

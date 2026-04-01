@@ -1,0 +1,40 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "private",
+  "signedByOrg": "guigu0101",
+  "signedByOrgName": "guigu0101",
+  "rootUrls": [
+    "http://localhost:3000/",
+    "http://teslamate.160731.xyz:7680/dashbord",
+    "http://192.168.1.3:3000/"
+  ],
+  "plugin": "guigu-amap-app",
+  "version": "1.0.2",
+  "time": 1753776614349,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "module.js": "0fad7b5c4c25cff56be1557dcde3efd40ca69d9d0b1d6fc55ad2181bbaae50c5",
+    "img/logo.svg": "87a6daef5ffab349c0dfe7eaf119c9ad5bece66f2872cb5323ec766a7b803035",
+    "img/logo.png": "7052a7264193cff7a6ee180cac8a430cf97dbd426dd94bbfe2e76e4e13190320",
+    "panels/amap-track/module.js": "8ab898da09756b69a2ffcbdb03908731daa8430b9c3f8f883479b5eb78915911",
+    "panels/amap-track/img/logo.svg": "0e96903ec06714976a6117661d3a5c2184ba5b2ef20a3429fd0ce903c3ac98b7",
+    "panels/amap-track/plugin.json": "b94a93ebf1ab0ccc20b09c658d1945a5deb86fcade27ad80e006801ed3abdf66",
+    "LICENSE": "c5accbbd8546e94c34aed24afe689a617627d18eed5a6c48277e48db57c23851",
+    "plugin.json": "738ed6f0b63d38bb625f4637041577658ea6d007971a9569cba40d3a1cc12582",
+    "README.md": "68cf4228b4a7fa7c41dc9c20852eb5b61b17d9aef1d44b8cbdeedd1eef3bfdf0",
+    "CHANGELOG.md": "aaa78be4710ef41d56ddab1edbd180ef9f9adfea2f293109aae925dc33a1b9b3"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+
+wsA+BAETCgBtBYJoiIHmCZB+TQxqcIhm50UUAAAAAAAcACBzYWx0QG5vdGF0
+aW9ucy5vcGVucGdwanMub3Jn2K2ZtRswhkPxf+yb5yqNdm11cYRKU4DUeVox
+jiqHEZ4WIQTzOyW2kQdOhGNlcPN+TQxqcIhm5wAArhUCB1Xu51Liu3a3N0em
+XgrJt7cn1chYGDFiwFU+mxucZ3UkqCyLpNLrbRESNA49/GY2s+ZyK8m6L/Dz
+mJoV1iixx9mfAgkBC3/egQFC+unLz4hUWdAYV7N3hCn/p3GSsDy60ttZ6kqL
+jdOXSJ6UG8O+D5SIMjRRF6WjQpa5j1Kak1F24Ia2iRs=
+=s9LJ
+-----END PGP SIGNATURE-----

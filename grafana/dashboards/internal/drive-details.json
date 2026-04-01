@@ -74,6 +74,9 @@
             },
             "insertNulls": false,
             "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -121,6 +124,10 @@
               {
                 "id": "custom.axisPlacement",
                 "value": "hidden"
+              },
+              {
+                "id": "displayName",
+                "value": "时速"
               }
             ]
           },
@@ -196,11 +203,11 @@
               },
               {
                 "id": "custom.axisPlacement",
-                "value": "right"
+                "value": "hidden"
               },
               {
                 "id": "displayName",
-                "value": "Power"
+                "value": "功率"
               }
             ]
           },
@@ -212,7 +219,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Battery Heater"
+                "value": "电池加热"
               },
               {
                 "id": "unit",
@@ -232,7 +239,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Range (ideal)"
+                "value": "续航 (理想)"
               },
               {
                 "id": "min",
@@ -248,7 +255,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Range (rated)"
+                "value": "续航 (额定)"
               },
               {
                 "id": "min",
@@ -304,7 +311,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Range (est.)"
+                "value": "续航 (期望)"
               },
               {
                 "id": "custom.axisPlacement",
@@ -319,7 +326,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Power"
+              "options": "power"
             },
             "properties": [
               {
@@ -349,7 +356,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "SOC"
+              "options": "battery_level"
             },
             "properties": [
               {
@@ -364,7 +371,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Range (est.)"
+              "options": "range_estimated_km"
             },
             "properties": [
               {
@@ -394,7 +401,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Battery Heater"
+              "options": "battery_heater"
             },
             "properties": [
               {
@@ -409,7 +416,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Speed"
+              "options": "speed_kmh"
             },
             "properties": [
               {
@@ -424,7 +431,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Range (rated)"
+              "options": "range_rated_km"
             },
             "properties": [
               {
@@ -494,7 +501,7 @@
           }
         }
       ],
-      "title": "Drive",
+      "title": "驾驶",
       "type": "timeseries"
     },
     {
@@ -537,6 +544,7 @@
       "id": 4,
       "maxDataPoints": 50000,
       "options": {
+        "autoZoom": true,
         "basemap": {
           "config": {},
           "name": "Layer 0",
@@ -598,6 +606,10 @@
             "type": "route"
           }
         ],
+        "lineColor": "red",
+        "maxDataPoints": 500,
+        "pointColor": "royalblue",
+        "scrollWheelZoom": true,
         "tooltip": {
           "mode": "details"
         },
@@ -642,7 +654,7 @@
         }
       ],
       "title": "",
-      "type": "geomap"
+      "type": "guigu-trackmapinamap-panel"
     },
     {
       "datasource": {
@@ -739,7 +751,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Elevation"
+                "value": "海拔"
               },
               {
                 "id": "color",
@@ -804,7 +816,7 @@
           }
         }
       ],
-      "title": "Elevation",
+      "title": "海拔",
       "type": "timeseries"
     },
     {
@@ -938,7 +950,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Outside Temperature"
+                "value": "车外温度"
               }
             ]
           },
@@ -957,7 +969,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Inside Temperature"
+                "value": "车内温度"
               }
             ]
           },
@@ -969,7 +981,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Driver Temperature"
+                "value": "驾驶位设定温度"
               }
             ]
           },
@@ -981,7 +993,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Passenger Temperature"
+                "value": "乘客位设定温度"
               }
             ]
           },
@@ -1001,7 +1013,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Climate"
+                "value": "空调"
               }
             ]
           },
@@ -1013,7 +1025,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Fan status"
+                "value": "风量"
               },
               {
                 "id": "custom.axisPlacement",
@@ -1075,7 +1087,7 @@
           }
         }
       ],
-      "title": "Temperatures",
+      "title": "温度",
       "type": "timeseries"
     },
     {
@@ -1155,7 +1167,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Front Left"
+                "value": "左前"
               }
             ]
           },
@@ -1171,7 +1183,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Front Right"
+                "value": "右前"
               }
             ]
           },
@@ -1187,7 +1199,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Rear Left"
+                "value": "左后"
               }
             ]
           },
@@ -1203,7 +1215,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Rear Right"
+                "value": "右后"
               }
             ]
           },
@@ -1328,7 +1340,7 @@
           }
         }
       ],
-      "title": "Tire Pressure",
+      "title": "胎压",
       "type": "timeseries"
     },
     {
@@ -1432,7 +1444,7 @@
           }
         }
       ],
-      "title": "Odometer (From - To)",
+      "title": "里程表 (起 - 止)",
       "type": "stat"
     },
     {
@@ -1523,7 +1535,7 @@
           }
         }
       ],
-      "title": "Drive Duration",
+      "title": "行程时长",
       "type": "stat"
     },
     {
@@ -1606,7 +1618,7 @@
           }
         }
       ],
-      "title": "Selected Duration",
+      "title": "选中时长",
       "type": "stat"
     },
     {
@@ -1738,7 +1750,7 @@
           }
         }
       ],
-      "title": "Speed Histogram ($speed_unit)",
+      "title": "速度直方图 ($speed_unit)",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -1870,7 +1882,7 @@
           }
         }
       ],
-      "title": "Distance driven",
+      "title": "行驶距离",
       "type": "stat"
     },
     {
@@ -1894,7 +1906,32 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UP"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "爬升"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DOWN"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "下降"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 3,
@@ -1980,7 +2017,7 @@
           }
         }
       ],
-      "title": "Elevation Summary",
+      "title": "海拔变化",
       "type": "stat"
     },
     {
@@ -2071,7 +2108,7 @@
           }
         }
       ],
-      "title": "Energy consumed (net)",
+      "title": "耗能（净值）",
       "type": "stat"
     },
     {
@@ -2079,7 +2116,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "Shows how much energy has been recovered through regenerative braking.\n\n\"Energy recovered\" is already included in \"Energy consumed (net)\" and is determined by looking for periods with negative power within your drive. \n\nRequires Streaming API to be enabled and available for this drive.",
+      "description": "显示通过再生制动回收的能量。\n\n“能量回收”已包含在“耗能（净值）”中，并通过查找行驶期间内功率为负的时段来确定。\n\n需要为此行程启用并可使用 Streaming API。",
       "fieldConfig": {
         "defaults": {
           "decimals": 2,
@@ -2163,7 +2200,7 @@
           }
         }
       ],
-      "title": "Energy recovered",
+      "title": "能量回收",
       "type": "stat"
     },
     {
@@ -2279,7 +2316,7 @@
           }
         }
       ],
-      "title": "Consumption (net)",
+      "title": "能耗",
       "type": "stat"
     },
     {
@@ -2387,7 +2424,7 @@
           }
         }
       ],
-      "title": "Ø Speed",
+      "title": "平均时速",
       "type": "stat"
     }
   ],
@@ -2559,7 +2596,7 @@
     "refresh_intervals": []
   },
   "timezone": "browser",
-  "title": "Drive Details",
+  "title": "行程详情",
   "uid": "zm7wN6Zgz",
   "version": 1,
   "weekStart": ""

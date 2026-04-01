@@ -47,10 +47,38 @@ defmodule TeslaMate.Locations do
     end
   end
 
-  # TODO 这里临时屏蔽语言变更时的逻辑
-  def  refresh_addresses(_lang) do
-
+  def list_addresses do
+    Address
+    |> order_by([a], fragment("? DESC", a.id))
+    |> Repo.all()
   end
+
+  def get_address!(id) do
+    Repo.get!(Address, id)
+  end
+
+  def search_address(%{latitude: lat, longitude: lng}) do
+    %GlobalSettings{language: lang} = Settings.get_global_settings!()
+
+    case @geocoder.search_poi(lat, lng, lang) do
+      {:ok, addresses} ->
+        {:ok, addresses}
+
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  def change_address(%Address{} = address, attrs \\ %{}) do
+    Address.changeset(address, attrs)
+  end
+
+  # TODO 这里临时屏蔽语言变更时的逻辑
+  def refresh_addresses(_lang) do
+    # find_address(%{latitude: 39.993252, longitude: 116.473083})
+    :ok
+  end
+
   # def refresh_addresses(lang) do
   #   Address
   #   |> Repo.all()
@@ -127,6 +155,30 @@ defmodule TeslaMate.Locations do
       Map.update!(acc, {type, id}, fn {address, nil} -> {address, attrs} end)
     end)
     |> Map.values()
+  end
+
+  def delete_address(%Address{} = address) do
+    # 检查是否有相关联的记录
+    drive_count =
+      from(d in Drive,
+        where: d.start_address_id == ^address.id or d.end_address_id == ^address.id,
+        select: count(d.id)
+      )
+      |> Repo.one()
+
+    charging_process_count =
+      from(c in ChargingProcess,
+        where: c.address_id == ^address.id,
+        select: count(c.id)
+      )
+      |> Repo.one()
+
+    # 如果有关联记录，则终止删除
+    if drive_count > 0 or charging_process_count > 0 do
+      {:error, :has_associated_records}
+    else
+      Repo.delete(address)
+    end
   end
 
   defp apply_geofence(%GeoFence{latitude: lat, longitude: lng, radius: r}, opts \\ []) do
@@ -256,5 +308,12 @@ defmodule TeslaMate.Locations do
     with {:ok, %Postgrex.Result{num_rows: _}} <- Repo.query(query, [id]) do
       :ok
     end
+  end
+
+  @doc """
+  根据 osm_id 和 osm_type 查找地址
+  """
+  def find_address_by_osm(osm_id, osm_type) do
+    Repo.get_by(Address, osm_id: osm_id, osm_type: osm_type)
   end
 end

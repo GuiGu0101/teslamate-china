@@ -1,1 +1,4 @@
+<%= Enum.map(@flash, fn {flash_key, flash_message} -> %>
+<p class={"notification is-#{flash_key}"}><%= flash_message %></p>
+<% end) %>
 <%= @inner_content %>

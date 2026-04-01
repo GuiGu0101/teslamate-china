@@ -84,6 +84,20 @@ export const ConfirmGeoFenceDeletion = {
   },
 };
 
+export const ConfirmAddressDeletion = {
+  mounted() {
+    const { id, msg } = this.el.dataset;
+
+    this.el.addEventListener("click", () => {
+      if (window.confirm(msg)) {
+        this.pushEvent("delete", { id });
+      }
+    });
+  },
+};
+
+import AMapLoader from "@amap/amap-jsapi-loader";
+
 import {
   Map as M,
   TileLayer,
@@ -93,6 +107,7 @@ import {
   Icon,
   Circle,
   CircleMarker,
+  map,
 } from "leaflet";
 
 import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -190,14 +205,10 @@ export const SimpleMap = {
     map.setView([lat, lng], 17);
     marker.addTo(map);
 
-    map.removeControl(map.zoomControl);
+    // map.removeControl(map.zoomControl);
 
-    map.on("mouseover", function (e) {
-      map.addControl(map.zoomControl);
-    });
-    map.on("mouseout", function (e) {
-      map.removeControl(map.zoomControl);
-    });
+    // map.on('mouseover', function (e) { map.addControl(map.zoomControl); });
+    // map.on('mouseout', function (e) { map.removeControl(map.zoomControl); });
 
     if (isArrow) {
       const setView = () => {
@@ -212,6 +223,46 @@ export const SimpleMap = {
   },
 };
 
+export const SimpleGDMap = {
+  mounted() {
+    const isDarkMode =
+    document.documentElement.getAttribute("data-theme") === "dark";
+    const $position = document.querySelector(`#position_${this.el.dataset.id}`);
+    const isArrow = this.el.dataset.marker === "arrow";
+    const [lat, lng, heading] = $position.value.split(",");
+    AMapLoader.load({
+      key: window._AMapSecurityConfig.apiKey, // 申请好的Web端开发者Key，首次调用 load 时必填
+      version: "2.0", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+    })
+      .then((AMap) => {
+        const map = new AMap.Map(`gdmap_${this.el.dataset.id}`, {
+          // 设置地图容器id
+          viewMode: "3D", // 是否为3D地图模式
+          center: [116.433322, 39.900256],
+          zoom: 14,
+          mapStyle: isDarkMode ? "amap://styles/dark" : "amap://styles/normal",
+        });
+
+        const marker = new AMap.Marker({
+          position: new AMap.LngLat(lng, lat), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+          icon: isArrow
+            ? "https://a.amap.com/jsapi_demos/static/demo-center-v2/car.png"
+            : undefined,
+          offset: isArrow ? new AMap.Pixel(-13, -26) : undefined,
+          angle: isArrow ? heading : undefined,
+          clickable: false,
+        });
+
+        map.add(marker);
+        // 缩放地图到合适的视野级别
+        map.setFitView([marker]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+};
+
 export const TriggerChange = {
   updated() {
     this.el.dispatchEvent(new CustomEvent("change"));
@@ -220,6 +271,191 @@ export const TriggerChange = {
 
 import("leaflet-control-geocoder");
 import("@geoman-io/leaflet-geoman-free");
+
+function createSearchBox(targetElement) {
+  const searchBox = window.document.createElement("div");
+  searchBox.className = "amap-searchBox";
+  searchBox.innerHTML = `
+    <table>
+    <tr>
+        <td>
+            <label>请输入关键字：</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input id="tipinput"/>
+        </td>
+    </tr>
+    </table>
+    `;
+  targetElement.append(searchBox);
+  targetElement.style.position = "relative";
+  return searchBox;
+}
+
+function createCircleEditor(CircleEditor, map, circle, inputEl) {
+  const circleEditor = new CircleEditor(map, circle);
+  circleEditor.on("move", function (event) {
+    console.log("触发事件：move", event.lnglat);
+    inputEl.$latitude.value = event.lnglat.getLat();
+    inputEl.$longitude.value = event.lnglat.getLng();
+  });
+
+  circleEditor.on("adjust", function (event) {
+    console.log("触发事件：adjust", event);
+    inputEl.$radius.value = event.radius;
+  });
+  circleEditor.open();
+  return () => {
+    circleEditor.close();
+  };
+}
+
+export const GDMap = {
+  mounted() {
+    const searchBox = createSearchBox(this.el);
+    const geoFence = (name) =>
+      document.querySelector(`input[name='geo_fence[${name}]']`);
+    const inuptEl = {
+      $radius: geoFence("radius"),
+      $latitude: geoFence("latitude"),
+      $longitude: geoFence("longitude"),
+      $name: geoFence("name"),
+    };
+    const isDarkMode =
+    document.documentElement.getAttribute("data-theme") === "dark";
+
+    AMapLoader.load({
+      key: window._AMapSecurityConfig.apiKey, // 申请好的Web端开发者Key，首次调用 load 时必填
+      version: "2.0", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+      plugins: ["AMap.CircleEditor", "AMap.AutoComplete"], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+    })
+      .then((AMap) => {
+        if (
+          inuptEl.$latitude.value == "0.0" ||
+          inuptEl.$longitude.value == "0.0"
+        ) {
+          inuptEl.$latitude.value = "39.900256";
+          inuptEl.$longitude.value = "116.433322";
+        }
+        const center = new AMap.LngLat(
+          inuptEl.$longitude.value,
+          inuptEl.$latitude.value,
+        );
+        const map = new AMap.Map("gdmap", {
+          // 设置地图容器id
+          center: center,
+          zoom: 14,
+          mapStyle: isDarkMode ? "amap://styles/dark" : "amap://styles/normal",
+        });
+
+        const circle = new AMap.Circle({
+          center: center,
+          radius: inuptEl.$radius.value, //半径
+          borderWeight: 3,
+          fillOpacity: 0.4,
+          fillColor: "#1791fc",
+          zIndex: 50,
+        });
+
+        map.add(circle);
+        // 缩放地图到合适的视野级别
+        map.setFitView([circle]);
+        let closeEditor = createCircleEditor(
+          AMap.CircleEditor,
+          map,
+          circle,
+          inuptEl,
+        );
+        map.getCity(function (info) {
+          console.log(info);
+          const { city, province } = info;
+          const auto = new AMap.AutoComplete({
+            input: "tipinput",
+            city: city || province,
+          });
+          auto.on("select", (event) => {
+            console.log(event.poi.location);
+            const { location, name } = event.poi;
+            inuptEl.$name.value = name;
+            inuptEl.$latitude.value = location.getLat();
+            inuptEl.$longitude.value = location.getLng();
+            closeEditor();
+            circle.setCenter(location);
+            map.setCenter(location, true, 500);
+            closeEditor = createCircleEditor(
+              AMap.CircleEditor,
+              map,
+              circle,
+              inuptEl,
+            );
+          });
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+};
+
+export const AddressChagneMap = {
+  map: null,
+  marker: null,
+
+  mounted() {
+    const isDarkMode =
+    document.documentElement.getAttribute("data-theme") === "dark";
+    const $position = document.querySelector(`#position_${this.el.dataset.id}`);
+    const [lat, lng, name] = $position.value.split(",");
+
+    AMapLoader.load({
+      key: window._AMapSecurityConfig.apiKey, // 申请好的Web端开发者Key，首次调用 load 时必填
+      version: "2.0", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+    })
+      .then((AMap) => {
+        const center = new AMap.LngLat(lng, lat);
+        const map = new AMap.Map("gdmap", {
+          // 设置地图容器id
+          center: center,
+          zoom: 14,
+          mapStyle: isDarkMode ? "amap://styles/dark" : "amap://styles/normal",
+        });
+
+        const marker = new AMap.Marker({
+          position: center,
+          label: {
+            content: name,
+          },
+          draggable: true,
+          zIndex: 50,
+        });
+        marker.on("dragend", (event) => {
+          console.log("触发事件: dragend", event);
+          this.pushEvent("search", {
+            lat: event.lnglat.getLat(),
+            lng: event.lnglat.getLng(),
+          });
+        });
+
+        map.add(marker);
+        // 缩放地图到合适的视野级别
+        map.setFitView([marker]);
+        const setView = () => {
+          const [lat, lng, name] = $position.value.split(",");
+          marker.setLabel({
+            content: name,
+          });
+          marker.setPosition([lng, lat]);
+          map.setFitView([marker]);
+        };
+        $position.addEventListener("change", setView);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+};
 
 export const Map = {
   mounted() {

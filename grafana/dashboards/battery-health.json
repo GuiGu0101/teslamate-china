@@ -43,7 +43,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "**Usable (now)** is the estimated current battery capacity. It is average of the estimated capacity reported by the last 10 charging sessions to have a better estimation.\n\nIf you see just '1.0 kWh' here, it means that you need at least a long charge session.\n\n**Usable (new)** is the estimated Battery Capacity since you begun to use TeslaMate. That's why, the more data you have logged from your brand new car the better. For those who have not used TeslaMate since they got their new car, or for those who have bought it second hand,  it's possible to set the max range to 100% and the battery capacity of the car battery when it was new in order to get a better and accurate estimation.",
+      "description": "**可用 (现在)** 是当前电池容量的估计值。 数据来源最近10次充电报告的估计容量的平均值\n\n如果只看见 '1.0 kWh', 则意味着需要更多的长时间充电。\n\n**可用 (初始)** 是自开始Teslamate以来的估计电池容量。\n\n这就是为什么您从新车记录的数据越多越好。对于那些自从买了新车后就没有使用过 Teslamate 的人，或者那些购买二手车的人，可以将最大续航里程设置为 100%，并将汽车电池的电池容量设置为新车时的电池容量，以获得更好、更准确的估计值。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -70,7 +70,44 @@
           },
           "unit": "kwatth"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Usable (new)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "可用(初始)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Usable (now)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "可用(当前)"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Difference"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "差值"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 6,
@@ -127,7 +164,7 @@
           }
         }
       ],
-      "title": "Battery Capacity",
+      "title": "电池容量",
       "type": "stat"
     },
     {
@@ -185,7 +222,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Max range (new)"
+                "value": "最大续航 (初始)"
               }
             ]
           },
@@ -197,7 +234,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Max range (now)"
+                "value": "最大续航 (当前)"
               }
             ]
           },
@@ -209,7 +246,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Range lost"
+                "value": "续航损失"
               }
             ]
           }
@@ -270,7 +307,7 @@
           }
         }
       ],
-      "title": "Ranges [$preferred_range]",
+      "title": "续航 [$preferred_range]",
       "type": "stat"
     },
     {
@@ -278,7 +315,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "\"Logged\" is the distance traveled that is saved on TeslaMate database.\n\n\"Mileage\" is the distance the car has traveled since using TeslaMate.\n\nSo, if there is a difference between both values, it is the distance that for some reason a drive hasn't been fully recorded, for example due to a bug or an unexpected restart and that TeslaMate has not been able to record, either due to lack of connection, areas without signal, or that it has been out of service.",
+      "description": "\"已记录\" 是保存在 TeslaMate 数据库中的行驶距离。\n\n\"里程\" 是汽车自使用 TeslaMate 以来行驶的距离。\n\n因此，如果两个值之间存在差异，则表示由于某种原因（例如由于错误或意外重启）驾驶未完全记录的距离，并且 TeslaMate 无法记录，原因是连接不足、区域无信号或已停止服务。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -295,7 +332,56 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Logged"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "已记录"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Mileage"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "里程"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Odometer"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "里程表"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Data lost (not logged)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "数据丢失(未记录)"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 6,
@@ -443,7 +529,7 @@
           }
         }
       ],
-      "title": "Drive Stats",
+      "title": "行程",
       "type": "stat"
     },
     {
@@ -569,7 +655,7 @@
           }
         }
       ],
-      "title": "AC/DC - Energy Used",
+      "title": "AC/DC 使用汇总",
       "type": "piechart"
     },
     {
@@ -577,7 +663,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "This dashboard is meant to have a look of the Battery health based on the data logged in TeslaMate. So, the more data you have logged from your brand new car the better.\n\n**Degradation** is just an estimated value to have a reference, measured on **usable battery level** of every charging session with enough kWh added (in order to avoid dirty data from the sample), calculated according to the rated efficiency of the car.",
+      "description": "此仪表板旨在根据 TeslaMate 中记录的数据查看电池的健康状况。因此，您从新车中记录的数据越多越好。\n\n**损耗** 只是一个参考估计值，在每次充电时测量 **可用电池电量**，再根据额定能耗进行计算",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -663,7 +749,7 @@
           }
         }
       ],
-      "title": "Estimated Degradation",
+      "title": "预估损耗",
       "type": "gauge"
     },
     {
@@ -763,7 +849,7 @@
           }
         }
       ],
-      "title": "Battery Health",
+      "title": "电池健康",
       "type": "bargauge"
     },
     {
@@ -771,7 +857,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "\"# of Charging cycles\" is estimated by dividing the whole energy added to the battery by the battery capacity when new.\n\n\"Charging Efficiency\" is estimated on the difference between energy used from the charger and energy added to the battery.",
+      "description": "\"循环次数\" 是根据添加到电池中的总能量估算的。\n\n\"充电效率\" 是根据充电器消耗的能量与添加到电池中的能量之间的差值估算的",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -795,6 +881,10 @@
               {
                 "id": "unit",
                 "value": "kwatth"
+              },
+              {
+                "id": "displayName",
+                "value": "充入电量"
               }
             ]
           },
@@ -807,6 +897,10 @@
               {
                 "id": "unit",
                 "value": "kwatth"
+              },
+              {
+                "id": "displayName",
+                "value": "消耗电量"
               }
             ]
           },
@@ -819,6 +913,34 @@
               {
                 "id": "unit",
                 "value": "percentunit"
+              },
+              {
+                "id": "displayName",
+                "value": "充电效率"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "# of Charges"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "充电次数"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "# of Charging cycles"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "循环次数"
               }
             ]
           }
@@ -1004,7 +1126,7 @@
           }
         }
       ],
-      "title": "Charging Stats",
+      "title": "充电统计",
       "type": "stat"
     },
     {
@@ -1125,7 +1247,7 @@
           }
         }
       ],
-      "title": "Current SOC",
+      "title": "当前 SOC",
       "transformations": [
         {
           "id": "configFromData",
@@ -1169,7 +1291,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "This is the Derived Rated Efficiency that TeslaMate calculates based on battery charges. \nThis information can be seen in more detail on the \"Efficiency\" dashboard.",
+      "description": "这是 TeslaMate 根据电池电量计算得出的额定效率。 \n 您可以在“能效分析”仪表板上更详细地查看此信息。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1269,7 +1391,7 @@
           }
         }
       ],
-      "title": "Efficiency",
+      "title": "效率",
       "type": "stat"
     },
     {
@@ -1373,7 +1495,7 @@
           }
         }
       ],
-      "title": "Current Stored Energy",
+      "title": "当前储存电量",
       "type": "bargauge"
     },
     {
@@ -1604,7 +1726,7 @@
           }
         }
       ],
-      "title": "Battery Capacity by Mileage",
+      "title": "电池容量随里程变化",
       "type": "xychart"
     }
   ],
@@ -1706,8 +1828,8 @@
           "text": "0",
           "value": "0"
         },
-        "description": "Set the capacity of your car battery when it was new, in case you started using TeslaMate after a while of having it. If not, leave it at 0, it will be calculated with the data that is logged in TeslaMate",
-        "label": "Custom Battery Capacity (kWh) when new",
+        "description": "设置新车电池的容量，以防您在使用一段时间后才开始使用 TeslaMate。如果没有，请将其保留为 0，它将使用 TeslaMate 中记录的数据进行计算",
+        "label": "自定义新电池容量（kWh）",
         "name": "custom_kwh_new",
         "options": [
           {
@@ -1724,8 +1846,8 @@
           "text": "0",
           "value": "0"
         },
-        "description": "Set the max range to 100% of your car when it was new, in case you started using TeslaMate after a while of having it. If not, leave it at 0, the degradation will be calculated with the data that is logged in TeslaMate",
-        "label": "Custom Max Range when new",
+        "description": "将最大续航里程设置为新车时的 100%，以防您在使用 TeslaMate 一段时间后开始使用。如果不是，请将其保留为 0，将使用 TeslaMate 中记录的数据计算衰减",
+        "label": "自定义新车最大续航",
         "name": "custom_max_range",
         "options": [
           {
@@ -1747,7 +1869,7 @@
     "hidden": true
   },
   "timezone": "browser",
-  "title": "Battery Health",
+  "title": "电池健康",
   "uid": "jchmRiqUfXgTM",
   "version": 1,
   "weekStart": ""

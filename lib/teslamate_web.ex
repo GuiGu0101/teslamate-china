@@ -54,6 +54,8 @@ defmodule TeslaMateWeb do
       use Phoenix.LiveView,
         layout: {TeslaMateWeb.LayoutView, :live}
 
+      alias Phoenix.LiveView.JS
+
       unquote(view_helpers())
     end
   end

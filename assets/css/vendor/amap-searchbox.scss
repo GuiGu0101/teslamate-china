@@ -1,0 +1,23 @@
+.amap-searchBox {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #ccc;
+  margin: 10px auto;
+  padding: 6px;
+  font-family: "Microsoft Yahei", "Pinghei";
+  font-size: 14px;
+  z-index: 1;
+}
+.amap-searchBox label {
+  margin: 0 20px 0 0;
+  color: #666666;
+  font-weight: normal;
+}
+.amap-searchBox input {
+  width: 170px;
+}
+.amap-searchBox .column2 {
+  padding-left: 25px;
+}

@@ -41,6 +41,7 @@
 @forward "bulma/sass/components/message";
 @forward "bulma/sass/components/navbar";
 @forward "bulma/sass/components/tabs";
+@forward "bulma/sass/components/panel";
 @forward "bulma/sass/elements/box";
 @forward "bulma/sass/elements/button";
 @forward "bulma/sass/elements/icon";
@@ -56,8 +57,15 @@
 @forward "bulma/sass/themes";
 
 // Theme overrides
-@import "./themes/light";
-@import "./themes/dark";
+@use "sass:meta";
+@use "themes/light";
+@use "themes/dark";
+@use "vendor/modal-fx";
+@use "vendor/amap-searchbox";
+
+@use "@mdi/font/scss/materialdesignicons" with (
+  $mdi-font-path: "@mdi/font/fonts"
+);
 
 @import "@creativebulma/bulma-tooltip/dist/bulma-tooltip.css";
 @import "@creativebulma/bulma-divider/dist/bulma-divider.css";
@@ -67,10 +75,8 @@
 @import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 @import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
 
-$mdi-font-path: "@mdi/font/fonts";
-@import "@mdi/font/scss/materialdesignicons.scss";
 
-@import "./vendor/modal-fx";
+
 
 // @import "../../deps/phoenix_live_view/assets/css/live_view.css";
 .phx-loading {

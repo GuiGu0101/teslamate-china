@@ -114,7 +114,7 @@
               },
               {
                 "id": "displayName",
-                "value": "Charging Voltage"
+                "value": "充电电压"
               },
               {
                 "id": "unit",
@@ -150,7 +150,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Power"
+                "value": "充电功率"
               },
               {
                 "id": "unit",
@@ -170,7 +170,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Battery heater"
+                "value": "电池加热"
               },
               {
                 "id": "unit",
@@ -222,7 +222,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Range"
+                "value": "续航"
               }
             ]
           },
@@ -234,7 +234,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Current"
+                "value": "充电电流"
               },
               {
                 "id": "unit",
@@ -254,7 +254,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Current (pilot)"
+                "value": "充电电流 (设置)"
               },
               {
                 "id": "unit",
@@ -306,7 +306,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Outdoor Temperature"
+                "value": "车外温度"
               }
             ]
           },
@@ -318,7 +318,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Phases"
+                "value": "阶段"
               },
               {
                 "id": "custom.axisPlacement",
@@ -329,7 +329,7 @@
         ]
       },
       "gridPos": {
-        "h": 20,
+        "h": 16,
         "w": 13,
         "x": 0,
         "y": 0
@@ -347,6 +347,7 @@
         },
         "tooltip": {
           "hideZeros": false,
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -382,7 +383,7 @@
           }
         }
       ],
-      "title": "Charge Details",
+      "title": "充电详情",
       "type": "timeseries"
     },
     {
@@ -431,6 +432,7 @@
       "id": 6,
       "links": [
         {
+          "targetBlank": true,
           "title": "Set cost",
           "url": "${base_url:raw}/charge-cost/${charging_process_id}"
         }
@@ -484,7 +486,7 @@
           }
         }
       ],
-      "title": "Cost",
+      "title": "费用",
       "type": "stat"
     },
     {
@@ -751,6 +753,34 @@
               {
                 "id": "unit",
                 "value": "%"
+              },
+              {
+                "id": "displayName",
+                "value": "效率"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Added"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "充入"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Used"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "消耗"
               }
             ]
           }
@@ -868,7 +898,7 @@
           }
         }
       ],
-      "title": "Charge Energy",
+      "title": "充电电能",
       "type": "stat"
     },
     {
@@ -906,7 +936,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 8,
         "w": 6,
         "x": 18,
         "y": 4
@@ -914,6 +944,7 @@
       "id": 4,
       "maxDataPoints": 500,
       "options": {
+        "autoZoom": true,
         "basemap": {
           "config": {},
           "name": "Layer 0",
@@ -978,6 +1009,10 @@
             "type": "markers"
           }
         ],
+        "lineColor": "red",
+        "maxDataPoints": 500,
+        "pointColor": "royalblue",
+        "scrollWheelZoom": true,
         "tooltip": {
           "mode": "details"
         },
@@ -1022,7 +1057,7 @@
         }
       ],
       "title": "",
-      "type": "geomap"
+      "type": "guigu-trackmapinamap-panel"
     },
     {
       "datasource": {
@@ -1057,7 +1092,44 @@
           },
           "unit": "%"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Start"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "起充"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Added"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "增加"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "End"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "结束"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 4,
@@ -1171,7 +1243,7 @@
           }
         }
       ],
-      "title": "Battery Level",
+      "title": "电池电量",
       "type": "stat"
     },
     {
@@ -1201,7 +1273,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 5,
+        "w": 3,
         "x": 13,
         "y": 12
       },
@@ -1255,7 +1327,7 @@
           }
         }
       ],
-      "title": "Ø Power",
+      "title": "平均功率",
       "type": "stat"
     },
     {
@@ -1309,9 +1381,9 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 5,
-        "x": 13,
-        "y": 16
+        "w": 2,
+        "x": 16,
+        "y": 12
       },
       "id": 15,
       "options": {
@@ -1363,7 +1435,7 @@
           }
         }
       ],
-      "title": "Ø Outdoor Temperature",
+      "title": "平均车外温度",
       "type": "stat"
     },
     {
@@ -1421,7 +1493,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Start"
+                "value": "起充"
               }
             ]
           },
@@ -1433,7 +1505,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Added"
+                "value": "增加"
               }
             ]
           },
@@ -1445,7 +1517,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "End"
+                "value": "结束"
               }
             ]
           }
@@ -1455,7 +1527,7 @@
         "h": 4,
         "w": 6,
         "x": 18,
-        "y": 16
+        "y": 12
       },
       "id": 14,
       "options": {
@@ -1563,7 +1635,7 @@
           }
         }
       ],
-      "title": "Ranges ($preferred_range)",
+      "title": "续航 ($preferred_range)",
       "type": "stat"
     },
     {
@@ -1649,7 +1721,7 @@
         "h": 19,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 16
       },
       "id": 11,
       "options": {
@@ -1704,6 +1776,7 @@
         ],
         "tooltip": {
           "hideZeros": false,
+          "maxHeight": 600,
           "mode": "single",
           "sort": "none"
         }
@@ -1767,7 +1840,7 @@
           }
         }
       ],
-      "title": "Charging curve",
+      "title": "充电曲线",
       "type": "xychart"
     }
   ],
@@ -1904,7 +1977,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Charge Details",
+  "title": "充电详情",
   "uid": "BHhxFeZRz",
   "version": 1,
   "weekStart": ""

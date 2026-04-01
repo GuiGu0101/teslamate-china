@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 1,
   "links": [
     {
       "icon": "dashboard",
@@ -120,7 +121,7 @@
           }
         }
       ],
-      "title": "# of Addresses",
+      "title": "地点",
       "transformations": [
         {
           "id": "organize",
@@ -200,7 +201,7 @@
           "refId": "A"
         }
       ],
-      "title": "# of Cities",
+      "title": "城市",
       "transformations": [
         {
           "id": "organize",
@@ -280,7 +281,7 @@
           "refId": "A"
         }
       ],
-      "title": "# of States",
+      "title": "省份",
       "transformations": [
         {
           "id": "organize",
@@ -360,7 +361,7 @@
           "refId": "A"
         }
       ],
-      "title": "# of Countries",
+      "title": "国家",
       "transformations": [
         {
           "id": "organize",
@@ -469,7 +470,7 @@
           }
         }
       ],
-      "title": "Cities",
+      "title": "城市排行",
       "type": "bargauge"
     },
     {
@@ -563,7 +564,7 @@
           }
         }
       ],
-      "title": "States",
+      "title": "省份排行",
       "type": "bargauge"
     },
     {
@@ -618,7 +619,11 @@
               },
               {
                 "id": "custom.width",
-                "value": 210
+                "value": 180
+              },
+              {
+                "id": "displayName",
+                "value": "时间"
               }
             ]
           },
@@ -630,6 +635,34 @@
             "properties": [
               {
                 "id": "custom.width"
+              },
+              {
+                "id": "displayName",
+                "value": "区/县"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Address"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "地址"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "County"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "城市"
               }
             ]
           }
@@ -648,7 +681,7 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "Date"
+            "displayName": "时间"
           }
         ]
       },
@@ -683,13 +716,13 @@
           }
         }
       ],
-      "title": "Last visited",
+      "title": "最近访问",
       "type": "table"
     },
     {
       "datasource": {
         "type": "grafana-postgresql-datasource",
-        "uid": "TeslaMate"
+        "uid": "PC98BA2F4D77E1A42"
       },
       "fieldConfig": {
         "defaults": {
@@ -752,7 +785,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Name"
+                "value": "名称"
               },
               {
                 "id": "unit",
@@ -785,7 +818,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Neighbourhood"
+                "value": "街道/镇"
               },
               {
                 "id": "unit",
@@ -808,7 +841,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "City"
+                "value": "区/县"
               },
               {
                 "id": "unit",
@@ -831,7 +864,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "State"
+                "value": "省/市"
               },
               {
                 "id": "unit",
@@ -854,7 +887,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Country"
+                "value": "国家"
               },
               {
                 "id": "unit",
@@ -881,6 +914,18 @@
               {
                 "id": "custom.hideFrom.viz",
                 "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "county"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "城市"
               }
             ]
           }
@@ -928,7 +973,7 @@
           }
         }
       ],
-      "title": "Addresses",
+      "title": "地点列表",
       "transformations": [
         {
           "id": "merge",
@@ -1005,7 +1050,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Name"
+                "value": "名称"
               },
               {
                 "id": "unit",
@@ -1089,7 +1134,7 @@
           }
         }
       ],
-      "title": "Geo-fences",
+      "title": "自定义区域",
       "transformations": [
         {
           "id": "merge",
@@ -1110,7 +1155,10 @@
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": {
           "type": "grafana-postgresql-datasource",
           "uid": "TeslaMate"
@@ -1129,7 +1177,10 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "text": "http://teslamate.160731.xyz:7680",
+          "value": "http://teslamate.160731.xyz:7680"
+        },
         "datasource": {
           "type": "grafana-postgresql-datasource",
           "uid": "TeslaMate"
@@ -1170,7 +1221,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Locations",
+  "title": "地点汇总",
   "uid": "ZzhF-aRWz",
   "version": 1,
   "weekStart": ""

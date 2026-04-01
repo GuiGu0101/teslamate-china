@@ -40,7 +40,7 @@ const build_opts = {
     ".woff": "file",
     ".woff2": "file",
   },
-  plugins: [sassPlugin(), buildLogger],
+  plugins: [sassPlugin({quietDeps:true}), buildLogger],
   define: {
     "process.env.NODE_ENV": isDevMode ? '"development"' : '"production"',
     global: "window",

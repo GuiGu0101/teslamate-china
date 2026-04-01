@@ -161,7 +161,7 @@
           }
         }
       ],
-      "title": "Ø Consumption (net)",
+      "title": "净能耗",
       "type": "stat"
     },
     {
@@ -273,7 +273,7 @@
           }
         }
       ],
-      "title": "Ø Consumption (gross)",
+      "title": "总能耗",
       "type": "stat"
     },
     {
@@ -385,7 +385,7 @@
           }
         }
       ],
-      "title": "Logged Distance",
+      "title": "记录距离",
       "type": "stat"
     },
     {
@@ -428,7 +428,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Temperature"
+                "value": "气温"
               },
               {
                 "id": "unit",
@@ -468,7 +468,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Driving Efficiency"
+                "value": "效率"
               },
               {
                 "id": "unit",
@@ -523,7 +523,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ø Consumption (net)"
+                "value": "能耗"
               },
               {
                 "id": "unit",
@@ -563,7 +563,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Distance"
+                "value": "行驶距离"
               },
               {
                 "id": "unit",
@@ -571,7 +571,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 200
+                "value": 193
               }
             ]
           },
@@ -603,7 +603,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ø Speed"
+                "value": "平均速度"
               },
               {
                 "id": "unit",
@@ -685,7 +685,7 @@
           }
         }
       ],
-      "title": "Temperature – Driving Efficiency",
+      "title": "温度 – 效率",
       "type": "table"
     },
     {
@@ -1135,7 +1135,7 @@
     "hidden": true
   },
   "timezone": "browser",
-  "title": "Efficiency",
+  "title": "能效分析",
   "uid": "fu4SiQgWz",
   "version": 1,
   "weekStart": ""
