@@ -94,6 +94,14 @@
       },
       "id": 4,
       "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
         "minVizHeight": 75,
         "minVizWidth": 75,
         "orientation": "auto",
@@ -104,11 +112,16 @@
           "fields": "",
           "values": false
         },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto"
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "value"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -259,6 +272,14 @@
       },
       "id": 10,
       "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
         "minVizHeight": 75,
         "minVizWidth": 75,
         "orientation": "auto",
@@ -269,11 +290,16 @@
           "fields": "",
           "values": false
         },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto"
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "auto"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -342,6 +368,14 @@
       },
       "id": 11,
       "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
         "minVizHeight": 75,
         "minVizWidth": 75,
         "orientation": "auto",
@@ -352,11 +386,16 @@
           "fields": "",
           "values": false
         },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto"
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "auto"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -511,6 +550,10 @@
         }
       ],
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [
             "max",
@@ -527,7 +570,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -638,7 +681,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -741,7 +784,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -852,7 +895,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -973,7 +1016,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1078,7 +1121,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1196,7 +1239,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1408,6 +1451,10 @@
         }
       ],
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [
             "max",
@@ -1424,7 +1471,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1521,6 +1568,14 @@
       },
       "id": 16,
       "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
         "minVizHeight": 75,
         "minVizWidth": 75,
         "orientation": "auto",
@@ -1531,11 +1586,16 @@
           "fields": "",
           "values": false
         },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto"
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "auto"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1615,6 +1675,14 @@
       },
       "id": 8,
       "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
         "minVizHeight": 75,
         "minVizWidth": 75,
         "orientation": "auto",
@@ -1625,11 +1693,16 @@
           "fields": "",
           "values": false
         },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto"
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "auto"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1698,6 +1771,14 @@
       },
       "id": 9,
       "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
         "minVizHeight": 75,
         "minVizWidth": 75,
         "orientation": "auto",
@@ -1708,11 +1789,16 @@
           "fields": "",
           "values": false
         },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto"
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "auto"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1836,6 +1922,10 @@
       ],
       "options": {
         "alignValue": "center",
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
@@ -1851,7 +1941,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {

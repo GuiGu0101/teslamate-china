@@ -163,6 +163,7 @@
         },
         "view": {
           "allLayers": true,
+          "dashboardVariable": false,
           "id": "fit",
           "lat": 0,
           "lon": 0,
@@ -170,7 +171,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -264,7 +265,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -295,7 +296,6 @@
           }
         }
       ],
-      "title": "",
       "type": "stat"
     },
     {
@@ -399,7 +399,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -430,7 +430,6 @@
           }
         }
       ],
-      "title": "",
       "type": "stat"
     },
     {
@@ -496,7 +495,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -527,7 +526,6 @@
           }
         }
       ],
-      "title": "",
       "type": "stat"
     }
   ],

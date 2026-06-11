@@ -111,7 +111,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -217,7 +217,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -351,7 +351,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -486,7 +486,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -593,7 +593,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -707,7 +707,7 @@
         "cellHeight": "sm",
         "showHeader": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -738,7 +738,6 @@
           }
         }
       ],
-      "title": "",
       "type": "table"
     },
     {
@@ -807,7 +806,7 @@
         "cellHeight": "sm",
         "showHeader": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -838,7 +837,6 @@
           }
         }
       ],
-      "title": "",
       "type": "table"
     },
     {
@@ -953,7 +951,7 @@
         "enablePagination": true,
         "showHeader": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1035,7 +1033,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1118,7 +1116,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1199,7 +1197,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1291,7 +1289,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1370,7 +1368,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1405,10 +1403,6 @@
       "type": "stat"
     },
     {
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 3,
         "w": 12,
@@ -1425,7 +1419,7 @@
         "content": "请参阅[贡献文档](https://docs.teslamate.org/docs/development#enable-pg_stat_statements-to-collect-query-statistics)，了解如何启用对服务器执行的所有 SQL 语句的计划和执行统计信息的跟踪。\n",
         "mode": "markdown"
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "title": "关于 pg_stat_statements（跟踪 SQL 规划和执行的统计数据）",
       "type": "text"
     },
@@ -1442,13 +1436,13 @@
           "custom": {
             "align": "auto",
             "cellOptions": {
-              "type": "auto",
-              "wrapText": false
+              "type": "auto"
             },
             "footer": {
               "reducers": []
             },
-            "inspect": false
+            "inspect": false,
+            "wrapText": false
           },
           "mappings": [],
           "thresholds": {
@@ -1534,7 +1528,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -1581,13 +1575,13 @@
           "custom": {
             "align": "auto",
             "cellOptions": {
-              "type": "auto",
-              "wrapText": false
+              "type": "auto"
             },
             "footer": {
               "reducers": []
             },
-            "inspect": false
+            "inspect": false,
+            "wrapText": false
           },
           "mappings": [],
           "thresholds": {
@@ -1673,7 +1667,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.4.0",
+      "pluginVersion": "13.0.1+security-01",
       "targets": [
         {
           "datasource": {
