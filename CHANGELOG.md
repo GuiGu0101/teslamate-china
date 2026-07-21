@@ -1,5 +1,65 @@
 # Changelog
 
+## [4.0.1] - 2026-06-14
+
+This release resolves the issue with refresh tokens. This was a community effort: the community conducted research, submitted pull requests, and the maintainers provided test images. We love to see, and we hope, we do not need another quick hotfix in the next days, weeks, ... .
+To make your TeslaMate experience even better, we have also made more than 8 other improvements.
+
+Enjoy!
+
+### New features
+
+### Improvements and bug fixes
+
+- fix: enable HTTP/2 and set TLS to 1.3 for TESLA_AUTH_HOST (#5406 - @kenc420 and @longzheng)
+- feat: log Erlang and OTP version (#5397 - @swiffer)
+
+#### Build, CI, internal
+
+- ci: remove now obsolete ARMv7 buildcache (#5397 - @swiffer)
+- build: remove now unused zstd compression tool to reduce docker image size (#5397 - @swiffer)
+- build(deps): bump floki from 0.38.1 to 0.38.3 (#5359)
+- ci(osv-scanner): don't fail on main pushes and merge queue (#5410 - @JakobLichterfeld)
+
+#### Dashboards
+
+#### Translations
+
+#### Documentation
+
+- docs: clarify Grafana and Erlang requirements (#5397 - @swiffer)
+- docs: clarify which docker images are provided and what to do if the user have a Raspberry Pi with ARMv7 OS (#5397 - @swiffer)
+- docs: clarify Erlang and OTP support in contributing guide (#5397 - @swiffer)
+
+## [4.0.0] - 2026-06-13
+
+**This is a breaking change release:**
+
+This release resolves the issue of 403 Forbidden errors with Owner API tokens. To accomplish this, we had to drop ARMv7 support, a plan that had been in place for a long time, as it held us back from recent updates. The need for this change in such a short time span was unforeseeable.
+To make your TeslaMate experience even better, we have also made more than 4 other improvements.
+
+Enjoy!
+
+### New features
+
+### Improvements and bug fixes
+
+- fix: restore vehicle_unavailable fallback for streaming fetches to prevent unwanted vehicle online state (#5378 - @ciyahu)
+- fix: properly clean up state and delete tokens on sign out (#5379 - @jlestel)
+
+#### Build, CI, internal
+
+- build: use Elixir 1.19.5 OTP 28 (#5391 - @NirKli and @JakobLichterfeld)
+- build: drop ARMv7 support as announced in Changelog of v3.1.0 (#5391 - @JakobLichterfeld)
+- build(deps): update flake.lock (#5386)
+- build(deps): bump shell-quote from 1.8.3 to 1.8.4 in /website (#5381)
+
+#### Dashboards
+
+#### Translations
+
+#### Documentation
+
 ## [3.1.0] - 2026-06-07
 
 MCU2 upgraded cars are now fully supported in the main release (please switch from the now deprecated mcu2 branch aka pr-4453).
@@ -11,7 +71,7 @@ Enjoy!
 
 ### ARMv7 deprecation
 
-This is the last TeslaMate release to include ARMv7 Docker images. To keep up with current Elixir versions, ARMv7 support will be dropped going forward. Please migrate your OS to ARM64 or x86_64 before upgrading to the next release. If this is not possible, please inform us in #5304.
+This is the last TeslaMate release to include ARMv7 Docker images. To keep up with current Elixir versions, ARMv7 support will be dropped going forward. Please migrate your OS to ARM64 or AMD64 before upgrading to the next release. If this is not possible, please inform us in #5304.
 
 ### New features
 
@@ -2835,6 +2895,8 @@ New users need to sign in via the web interface.
 
 ## [1.0.0] - 2019-07-25
 
+[4.0.1]: https://github.com/teslamate-org/teslamate/compare/v4.0.0...v4.0.1
+[4.0.0]: https://github.com/teslamate-org/teslamate/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/teslamate-org/teslamate/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/teslamate-org/teslamate/compare/v2.2.0...v3.0.0
 [2.2.0]: https://github.com/teslamate-org/teslamate/compare/v2.1.1...v2.2.0
