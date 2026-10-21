@@ -1,0 +1,11 @@
+{application,gen_state_machine,
+             [{config_mtime,1753756800},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger]},
+              {description,"An Elixir wrapper for gen_statem."},
+              {modules,['Elixir.GenStateMachine',
+                        'Elixir.GenStateMachine.Application',
+                        'Elixir.GenStateMachine.Translator']},
+              {registered,[]},
+              {vsn,"3.0.0"},
+              {mod,{'Elixir.GenStateMachine.Application',[]}}]}.

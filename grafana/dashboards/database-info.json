@@ -18,11 +18,11 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 1,
   "links": [
     {
       "icon": "dashboard",
       "tags": [],
+      "targetBlank": true,
       "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
@@ -111,7 +111,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -217,7 +217,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -351,7 +351,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -418,7 +418,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "这意味着您有一些**行程**或**充电**尚未关闭。\n\n 如果是这样，您可以按照官方指南进行操作：\n <a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data' target='_blank'>手动修复数据</a>",
+      "description": "Open **Drives** or **Charges** can be active sessions and are not necessarily incomplete. Select a count to review the matching records.\nIf a record is incomplete, follow the official guide: \n<a href='https://docs.teslamate.org/docs/maintenance/manually_fixing_data' target='_blank'>Manually fixing data</a>",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -429,8 +429,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-blue",
+                "color": "green",
                 "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 1
               }
             ]
           }
@@ -445,6 +449,16 @@
               {
                 "id": "displayName",
                 "value": "充电未完成"
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Review incomplete charges",
+                    "url": "/d/TSmNYvRRk/charges?var-car_id=$car_id&viewPanel=17"
+                  }
+                ]
               }
             ]
           },
@@ -457,6 +471,16 @@
               {
                 "id": "displayName",
                 "value": "行程未完成"
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Review incomplete drives",
+                    "url": "/d/Y8upc6ZRk/drives?var-car_id=$car_id&viewPanel=9"
+                  }
+                ]
               }
             ]
           }
@@ -486,7 +510,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -593,7 +617,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -707,7 +731,7 @@
         "cellHeight": "sm",
         "showHeader": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -806,7 +830,7 @@
         "cellHeight": "sm",
         "showHeader": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -951,7 +975,7 @@
         "enablePagination": true,
         "showHeader": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -1033,7 +1057,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -1116,7 +1140,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -1197,7 +1221,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -1289,7 +1313,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -1368,7 +1392,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -1419,7 +1443,7 @@
         "content": "请参阅[贡献文档](https://docs.teslamate.org/docs/development#enable-pg_stat_statements-to-collect-query-statistics)，了解如何启用对服务器执行的所有 SQL 语句的计划和执行统计信息的跟踪。\n",
         "mode": "markdown"
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "title": "关于 pg_stat_statements（跟踪 SQL 规划和执行的统计数据）",
       "type": "text"
     },
@@ -1528,7 +1552,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -1667,7 +1691,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -1860,5 +1884,6 @@
   "title": "数据库信息",
   "uid": "jchmDbInfo",
   "version": 1,
-  "weekStart": ""
+  "weekStart": "",
+  "id": 1
 }

@@ -18,11 +18,11 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
   "links": [
     {
       "icon": "dashboard",
       "tags": [],
+      "targetBlank": true,
       "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
@@ -171,7 +171,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -202,8 +202,8 @@
           }
         }
       ],
-      "title": "",
-      "type": "guigu-trackmapinamap-panel"
+      "type": "guigu-trackmapinamap-panel",
+      "title": ""
     },
     {
       "datasource": {
@@ -265,7 +265,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -399,7 +399,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -495,7 +495,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -600,5 +600,6 @@
   "title": "行程",
   "uid": "RG_DxSmgk",
   "version": 1,
-  "weekStart": ""
+  "weekStart": "",
+  "id": 1
 }

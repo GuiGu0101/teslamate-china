@@ -1,0 +1,13 @@
+{application,ex_cldr_plugs,
+             [{config_mtime,1753756800},
+              {optional_applications,[gettext,jason]},
+              {applications,[kernel,stdlib,elixir,logger,ex_cldr,gettext,
+                             jason,plug]},
+              {description,"Plugs suporting CLDR and setting the locale from requests and request headers.\n"},
+              {modules,['Elixir.Cldr.Plug','Elixir.Cldr.Plug.AcceptLanguage',
+                        'Elixir.Cldr.Plug.PutLocale',
+                        'Elixir.Cldr.Plug.PutSession',
+                        'Elixir.Cldr.Plug.SetLocale',
+                        'Elixir.Cldr.Plug.SetSession']},
+              {registered,[]},
+              {vsn,"1.3.3"}]}.

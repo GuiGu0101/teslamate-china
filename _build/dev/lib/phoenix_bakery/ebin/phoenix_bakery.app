@@ -1,0 +1,1 @@
+{application,phoenix_bakery,[{modules,['Elixir.PhoenixBakery','Elixir.PhoenixBakery.Brotli','Elixir.PhoenixBakery.Gzip','Elixir.PhoenixBakery.Zstd']},{optional_applications,[brotli,ezstd]},{applications,[kernel,stdlib,elixir,logger,phoenix,brotli,ezstd]},{description,"Better compression for your Phoenix assets."},{registered,[]},{vsn,"1.0.0"}]}.

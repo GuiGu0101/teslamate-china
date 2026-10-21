@@ -5,10 +5,11 @@
   ];
 
   perSystem =
-    { config
-    , pkgs
-    , lib
-    , ...
+    {
+      config,
+      pkgs,
+      lib,
+      ...
     }:
     # legacy
     let
@@ -50,6 +51,11 @@
             mosquitto_sub
             config.treefmt.build.wrapper
             pkgs.osv-scanner
+            pkgs.reuse # `reuse lint`, same version as the `.#check-reuse` CI check
+            pkgs.cargo
+            pkgs.clippy
+            pkgs.rust-analyzer
+            pkgs.rustfmt
           ]
           ++ builtins.attrValues config.treefmt.build.programs
           ++ optionals stdenv.isLinux [
@@ -69,9 +75,9 @@
           export MQTT_HOST="localhost"
           export MQTT_PORT="${toString mosquitto_port}"
           export RELEASE_COOKIE="1234567890123456789"
-          export TZDATA_DIR="$PWD/tzdata"
-          export MIX_REBAR3="${pkgs.beam27Packages.rebar3}/bin/rebar3";
-          mix deps.get
+          export TZDATA_DIR="$DEVENV_ROOT/elixir/tzdata"
+          export MIX_REBAR3="${config.teslamate.rebar3}/bin/rebar3";
+          MIX_EXS=elixir/mix.exs mix deps.get
         '';
         enterTest = ''
           mix test
@@ -81,6 +87,9 @@
         };
         process.managers.process-compose = {
           port = process_compose_port;
+          # The TUI keeps `devenv up` in the foreground. To run the services
+          # non-interactively, start them detached
+          # with `devenv up --detached` and stop them via `devenv processes stop`.
           tui.enable = true;
         };
         # services.postgres = {

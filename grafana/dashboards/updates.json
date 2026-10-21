@@ -22,6 +22,7 @@
     {
       "icon": "dashboard",
       "tags": [],
+      "targetBlank": true,
       "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
@@ -96,7 +97,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -176,7 +177,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -469,7 +470,7 @@
           }
         ]
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -587,7 +588,6 @@
     "from": "now-10y",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "refresh_intervals": [
       "10s",
@@ -605,5 +605,6 @@
   "title": "更新记录",
   "uid": "IiC07mgWz",
   "version": 1,
-  "weekStart": ""
+  "weekStart": "",
+  "timeRangeUpdatedDuringEditOrView": false
 }

@@ -59,6 +59,7 @@
     {
       "icon": "dashboard",
       "tags": [],
+      "targetBlank": true,
       "title": "TeslaMate",
       "tooltip": "",
       "type": "link",
@@ -94,7 +95,6 @@
         "type": "grafana-postgresql-datasource",
         "uid": "TeslaMate"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -210,6 +210,8 @@
             "min"
           ],
           "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -220,7 +222,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -280,7 +282,8 @@
         }
       ],
       "title": "续航 - 总里程",
-      "type": "timeseries"
+      "type": "timeseries",
+      "description": ""
     },
     {
       "datasource": {
@@ -387,6 +390,8 @@
             "min"
           ],
           "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -397,7 +402,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
@@ -593,6 +598,8 @@
             "min"
           ],
           "displayMode": "table",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -603,7 +610,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1+security-01",
+      "pluginVersion": "13.2.1",
       "targets": [
         {
           "datasource": {
