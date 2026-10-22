@@ -64,7 +64,6 @@
           ]
           ++ optional stdenv.isDarwin terminal-notifier;
         enterShell = ''
-          export LOCALES="${config.teslamate.cldr}/priv/cldr";
           export PORT="4008"
           export ENCRYPTION_KEY="pMWSVzIWhkZo81W7"
           export DATABASE_USER="teslamate"
