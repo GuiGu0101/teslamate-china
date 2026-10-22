@@ -731,8 +731,18 @@
                 "value": [
                   {
                     "targetBlank": false,
-                    "title": "Create or edit geo-fence",
+                    "title": "创建或修改收藏点",
                     "url": "${base_url:raw}/geo-fences/${__data.fields.path}"
+                  },
+                  {
+                    "targetBlank": false,
+                    "title": "修改地址信息",
+                    "url": "${base_url:raw}/address/${__data.fields.address_id}/edit"
+                  },
+                  {
+                    "targetBlank": false,
+                    "title": "切换地址",
+                    "url": "${base_url:raw}/address/${__data.fields.path}&from=charge&link_id=${__data.fields.id}"
                   }
                 ]
               },
@@ -1148,6 +1158,18 @@
               {
                 "id": "decimals",
                 "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "address_id"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom.viz",
+                "value": true
               }
             ]
           }

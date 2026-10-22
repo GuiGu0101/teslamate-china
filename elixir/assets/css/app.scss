@@ -74,8 +74,6 @@
 @import "leaflet/dist/leaflet.css";
 @import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 @import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
-
-
 // Fades the modal in and scales its content up when it opens, and back when it
 // closes. Bulma switches the modal's display, which cannot be transitioned, so
 // the modal stays laid out and is hidden through visibility instead; the

@@ -155,7 +155,6 @@ defmodule TeslaMate.Locations.Geocoder do
       get_first(address, [:country, "country"])
     ]
 
-    Logger.debug("get_display_name: #{inspect(address)} #{get_in(address, ["country"])}")
 
     list_join(display_names, ", ", "")
   end
@@ -393,6 +392,12 @@ defmodule TeslaMate.Locations.Geocoder do
 
   defp get_first(address, [key | aliases]) do
     with nil <- get_in_not_empty_list(address, [key]), do: get_first(address, aliases)
+  end
+
+  defp get_in_not_empty_list(data, keys) when is_struct(data) do
+    key = List.first(keys)
+    target = Map.get(data, key)
+    if is_list(target) and length(target) == 0, do: nil, else: target
   end
 
   defp get_in_not_empty_list(data, keys) do

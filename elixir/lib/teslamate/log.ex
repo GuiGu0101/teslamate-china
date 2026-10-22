@@ -278,6 +278,19 @@ defmodule TeslaMate.Log do
 
   ## Drive
 
+  def get_drive!(id) do
+    Drive
+    |> where(id: ^id)
+    |> preload([:start_address, :end_address, :start_geofence, :end_geofence, :car])
+    |> Repo.one!()
+  end
+
+  def update_drive(%Drive{} = drive, attrs) do
+    drive
+    |> Drive.changeset(attrs)
+    |> Repo.update()
+  end
+
   def start_drive(%Car{id: id}) do
     %Drive{car_id: id}
     |> Drive.changeset(%{start_date: DateTime.utc_now()})

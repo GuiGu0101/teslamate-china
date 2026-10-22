@@ -316,4 +316,15 @@ defmodule TeslaMate.Locations do
   def find_address_by_osm(osm_id, osm_type) do
     Repo.get_by(Address, osm_id: osm_id, osm_type: osm_type)
   end
+
+  @doc """
+  根据 osm_id 和 osm_type 获取地址（带 ID）
+  用于检查地址是否已存在
+  """
+  def get_address_by_osm(osm_id, osm_type) do
+    Address
+    |> where([a], a.osm_id == ^osm_id and a.osm_type == ^osm_type)
+    |> select([:id, :osm_id, :osm_type, :name])
+    |> Repo.one()
+  end
 end

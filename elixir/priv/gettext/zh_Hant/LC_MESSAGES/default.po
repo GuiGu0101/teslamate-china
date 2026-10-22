@@ -963,3 +963,174 @@ msgstr "您的 Tesla 帳號因登入失敗次數過多而被鎖定。要解鎖�
 #, elixir-autogen, elixir-format
 msgid "Address \"%{name}\" updated"
 msgstr ""
+
+#: lib/teslamate_web/live/address_live/form.html.heex:140
+#, elixir-autogen, elixir-format
+msgid "Address Details"
+msgstr "地址詳情"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:47
+#, elixir-autogen, elixir-format
+msgid "Address already exists"
+msgstr "地址已存在"
+
+#: lib/teslamate_web/live/address_live/form.ex:157
+#, elixir-autogen, elixir-format
+msgid "Address saved successfully"
+msgstr "地址保存成功"
+
+#: lib/teslamate_web/live/address_live/form.ex:121
+#, elixir-autogen, elixir-format
+msgid "Address updated successfully"
+msgstr "地址更新成功"
+
+#: lib/teslamate_web/live/address_live/index.ex:37
+#, elixir-autogen, elixir-format
+msgid ""
+"Cannot delete address because it is referenced by drives or charging "
+"processes."
+msgstr ""
+
+#: lib/teslamate_web/live/address_live/form.ex:250
+#, elixir-autogen, elixir-format
+msgid "City"
+msgstr "城市"
+
+#: lib/teslamate_web/live/address_live/form.ex:254
+#, elixir-autogen, elixir-format
+msgid "Country"
+msgstr "國家"
+
+#: lib/teslamate_web/live/address_live/form.ex:251
+#, elixir-autogen, elixir-format
+msgid "County"
+msgstr "區縣"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:31
+#, elixir-autogen, elixir-format
+msgid "Creating address for charging location"
+msgstr "正在為充電地點創建地址"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Creating address for trip end point"
+msgstr "正在為行程終點創建地址"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:25
+#, elixir-autogen, elixir-format
+msgid "Creating address for trip start point"
+msgstr "正在為行程起點創建地址"
+
+#: lib/teslamate_web/live/address_live/index.html.heex:52
+#, elixir-autogen, elixir-format
+msgid "Delete '%{address}'?"
+msgstr ""
+
+#: lib/teslamate_web/live/address_live/form.ex:256
+#, elixir-autogen, elixir-format
+msgid "Display Name"
+msgstr "完整地址"
+
+#: lib/teslamate_web/live/address_live/form.ex:73
+#: lib/teslamate_web/live/address_live/form.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Edit Address"
+msgstr "編輯地址"
+
+#: lib/teslamate_web/live/address_live/index.ex:48
+#, elixir-autogen, elixir-format
+msgid "Failed to delete address: %{reason}"
+msgstr ""
+
+#: lib/teslamate_web/live/address_live/form.ex:174
+#, elixir-autogen, elixir-format
+msgid "Failed to save address: %{reason}"
+msgstr ""
+
+#: lib/teslamate_web/live/address_live/form.ex:247
+#, elixir-autogen, elixir-format
+msgid "House Number"
+msgstr "門牌號"
+
+#: lib/teslamate_web/live/address_live/form.ex:245
+#, elixir-autogen, elixir-format
+msgid "Latitude"
+msgstr "緯度"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:36
+#, elixir-autogen, elixir-format
+msgid "Link ID: %{id}"
+msgstr "關聯 ID: %{id}"
+
+#: lib/teslamate_web/live/address_live/form.ex:246
+#, elixir-autogen, elixir-format
+msgid "Longitude"
+msgstr "經度"
+
+#: lib/teslamate_web/live/address_live/form.ex:249
+#, elixir-autogen, elixir-format
+msgid "Neighbourhood"
+msgstr "街區"
+
+#: lib/teslamate_web/live/address_live/form.ex:72
+#: lib/teslamate_web/live/address_live/form.html.heex:8
+#, elixir-autogen, elixir-format
+msgid "New Address"
+msgstr "新增地址"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:108
+#, elixir-autogen, elixir-format
+msgid "No recommendations, drag map to search"
+msgstr "無推薦地點，請拖拽地圖搜索"
+
+#: lib/teslamate_web/live/address_live/form.ex:257
+#, elixir-autogen, elixir-format
+msgid "OSM ID"
+msgstr "OSM ID"
+
+#: lib/teslamate_web/live/address_live/form.ex:258
+#, elixir-autogen, elixir-format
+msgid "OSM Type"
+msgstr "OSM 類型"
+
+#: lib/teslamate_web/live/address_live/form.ex:261
+#, elixir-autogen, elixir-format
+msgid "Official name from map"
+msgstr "地圖官方名稱"
+
+#: lib/teslamate_web/live/address_live/form.ex:255
+#, elixir-autogen, elixir-format
+msgid "Postcode"
+msgstr "郵編"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:92
+#, elixir-autogen, elixir-format
+msgid "Recommended Locations"
+msgstr "推薦地點"
+
+#: lib/teslamate_web/live/address_live/form.ex:248
+#, elixir-autogen, elixir-format
+msgid "Road"
+msgstr "道路"
+
+#: lib/teslamate_web/live/address_live/form.ex:252
+#, elixir-autogen, elixir-format
+msgid "State"
+msgstr "省份"
+
+#: lib/teslamate_web/live/address_live/form.ex:253
+#, elixir-autogen, elixir-format
+msgid "State District"
+msgstr "區縣"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:166
+#, elixir-autogen, elixir-format
+msgid "Technical Information"
+msgstr "技術信息"
+
+#: lib/teslamate_web/live/address_live/form.html.heex:50
+#, elixir-autogen, elixir-format
+msgid ""
+"This location has been saved before. Saving will update the existing "
+"address."
+msgstr "該位置之前已保存過。保存將更新現有地址。"

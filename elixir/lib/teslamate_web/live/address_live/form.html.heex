@@ -4,22 +4,63 @@
     <li><.link navigate={~p"/address"}><%= gettext("Addresses") %></.link></li>
     <li class="is-active">
       <a href="#">
-        <%= @address.name %>
+        <%= if @action == :new do %>
+          <%= gettext("New Address") %>
+        <% else %>
+          <%= @address.name || gettext("Edit Address") %>
+        <% end %>
       </a>
     </li>
   </ul>
 </nav>
 
+<%!-- 来源提示 + 地址存在提示 --%>
+<div class="notifications">
+  <%= if @from do %>
+    <div class="notification is-info">
+      <p class="heading">
+        <%= case @from do %>
+          <% "drive_start" -> %>
+            <i class="mdi mdi-map-marker-radius"></i>
+            <%= gettext("Creating address for trip start point") %>
+          <% "drive_end" -> %>
+            <i class="mdi mdi-map-marker-check"></i>
+            <%= gettext("Creating address for trip end point") %>
+          <% "charge" -> %>
+            <i class="mdi mdi-ev-station"></i>
+            <%= gettext("Creating address for charging location") %>
+        <% end %>
+      </p>
+      <%= if @link_record do %>
+        <p class="is-size-7">
+          <%= gettext("Link ID: %{id}", id: @link_record.id) %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%!-- 地址已存在提示 --%>
+  <%= if @action == :new and @existing_address_id do %>
+    <div class="notification is-warning">
+      <p class="heading">
+        <i class="mdi mdi-alert-circle"></i>
+        <%= gettext("Address already exists") %>
+      </p>
+      <p class="is-size-7">
+        <%= gettext(
+          "This location has been saved before. Saving will update the existing address."
+        ) %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
 <.form :let={f} for={@changeset} phx-change="validate" phx-submit="save" class="address">
   <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <%= label(f, :position, gettext("Position"), class: "label") %>
-    </div>
     <div class="field-body">
       <div class="field">
         <div class="control">
           <div id="map_container" phx-update="ignore">
-            <%!-- <figure id="map" style="height: 400px; position: relative;" phx-hook="Map"></figure>  --%>
             <figure
               id="gdmap"
               style="height: 400px; position: relative;"
@@ -36,9 +77,7 @@
             phx-hook="TriggerChange"
             disabled
           />
-          <%!-- <%= hidden_input() %> --%>
         </div>
-        <p><%= @changeset.action %></p>
         <%= if @show_errors do %>
           <p class="help is-danger">
             <span>raw: </span> <%= error_tag(f, :raw) %>
@@ -48,28 +87,37 @@
       <div class="field is-flex-grow-0" style="width: 300px">
         <div class="control">
           <nav class="panel is-flex is-flex-direction-column" style="height: 400px">
-            <p class="panel-heading is-flex-grow-0">推荐地点<%= @type %></p>
+            <p class="panel-heading is-flex-grow-0">
+              <i class="mdi mdi-map-search"></i>
+              <%= gettext("Recommended Locations") %>
+            </p>
             <div style="overflow: auto;" class="is-flex-grow-1">
-              <a
-                :for={ad <- @addresses}
-                class="panel-block"
-                phx-click={JS.push("change_address", value: ad)}
-              >
-                <span class="panel-icon">
-                  <i class="mdi mdi-map-marker-circle" aria-hidden="true"></i>
-                </span>
-                <%= ad.name %>
-              </a>
+              <%= if length(@addresses) > 0 do %>
+                <a
+                  :for={ad <- @addresses}
+                  class="panel-block"
+                  phx-click={JS.push("change_address", value: ad)}
+                >
+                  <span class="panel-icon">
+                    <i class="mdi mdi-map-marker-circle" aria-hidden="true"></i>
+                  </span>
+                  <%= ad.name %>
+                </a>
+              <% else %>
+                <p class="panel-block is-muted">
+                  <%= gettext("No recommendations, drag map to search") %>
+                </p>
+              <% end %>
             </div>
           </nav>
         </div>
       </div>
     </div>
   </div>
-<%
-fields = [
-    :latitude,
-    :longitude,
+
+  <% 
+  # 字段分组显示
+  location_fields = [
     :name,
     :house_number,
     :road,
@@ -80,31 +128,64 @@ fields = [
     :state_district,
     :country,
     :postcode,
-    :display_name,
+    :display_name
   ]
-  fields =
-    if @address.osm_id == "unknown" or @action == :new do
-      [:osm_id,:osm_type] ++ fields
-    else
-      fields
-    end
- %>
 
-  <%=
-  for field <- fields do %>
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <%= label(f, field, field, class: "label") %>
-      </div>
-      <div class="field-body">
-        <div class="field is-expanded">
-          <div class="control">
-            <%= text_input(f, field, class: "input",readonly: field == :osm_id || field == :osm_type || field == :id) %>
+  tech_fields = [:latitude, :longitude, :osm_id, :osm_type]
+
+  show_tech_fields = @address.osm_id == "unknown" or @action == :new %>
+
+  <%!-- 地址详情 --%>
+  <div class="card mb-4">
+    <div class="card-content">
+      <p class="heading"><i class="mdi mdi-map-marker"></i> <%= gettext("Address Details") %></p>
+      <%= for field <- location_fields do %>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <%= label(f, field, field_label(field), class: "label") %>
           </div>
-          <%= if @show_errors do %>
-            <p class="help is-danger"><%= error_tag(f, field) %></p>
-          <% end %>
+          <div class="field-body">
+            <div class="field is-expanded">
+              <div class="control">
+                <%= text_input(f, field, class: "input") %>
+              </div>
+              <%= if @show_errors do %>
+                <p class="help is-danger"><%= error_tag(f, field) %></p>
+              <% end %>
+            </div>
+          </div>
         </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%!-- 技术信息（仅新增或未知地址显示）--%>
+  <%= if show_tech_fields do %>
+    <div class="card mb-4">
+      <div class="card-content">
+        <p class="heading">
+          <i class="mdi mdi-code-tags"></i> <%= gettext("Technical Information") %>
+        </p>
+        <%= for field <- tech_fields do %>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <%= label(f, field, field_label(field), class: "label") %>
+            </div>
+            <div class="field-body">
+              <div class="field is-expanded">
+                <div class="control">
+                  <%= text_input(f, field,
+                    class: "input",
+                    readonly: field in [:osm_id, :osm_type, :latitude, :longitude]
+                  ) %>
+                </div>
+                <%= if @show_errors do %>
+                  <p class="help is-danger"><%= error_tag(f, field) %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>

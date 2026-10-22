@@ -711,8 +711,18 @@
                 "value": [
                   {
                     "targetBlank": false,
-                    "title": "Create or edit geo-fence",
+                    "title": "创建或修改收藏点",
                     "url": "${base_url:raw}/geo-fences/${__data.fields.start_path}"
+                  },
+                  {
+                    "targetBlank": false,
+                    "title": "修改地址信息",
+                    "url": "${base_url:raw}/address/${__data.fields.start_address_id}/edit"
+                  },
+                  {
+                    "targetBlank": false,
+                    "title": "切换地址",
+                    "url": "${base_url:raw}/address/${__data.fields.start_path}&from=drive_start&link_id=${__data.fields.drive_id}"
                   }
                 ]
               },
@@ -737,8 +747,18 @@
                 "value": [
                   {
                     "targetBlank": false,
-                    "title": "Create or edit geo-fence",
+                    "title": "创建或修改收藏点",
                     "url": "${base_url:raw}/geo-fences/${__data.fields.end_path}"
+                  },
+                  {
+                    "targetBlank": false,
+                    "title": "修改地址信息",
+                    "url": "${base_url:raw}/address/${__data.fields.end_address_id}/edit"
+                  },
+                  {
+                    "targetBlank": false,
+                    "title": "切换地址",
+                    "url": "${base_url:raw}/address/${__data.fields.end_path}&from=drive_end&link_id=${__data.fields.drive_id}"
                   }
                 ]
               },
@@ -1219,6 +1239,18 @@
               {
                 "id": "custom.minWidth",
                 "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*_address_id$/"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom.viz",
+                "value": true
               }
             ]
           }

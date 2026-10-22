@@ -403,7 +403,7 @@ export const SimpleMap = {
 export const SimpleGDMap = {
   mounted() {
     const isDarkMode =
-    document.documentElement.getAttribute("data-theme") === "dark";
+      document.documentElement.getAttribute("data-theme") === "dark";
     const $position = document.querySelector(`#position_${this.el.dataset.id}`);
     const isArrow = this.el.dataset.marker === "arrow";
     const [lat, lng, heading] = $position.value.split(",");
@@ -501,7 +501,7 @@ export const GDMap = {
       $name: geoFence("name"),
     };
     const isDarkMode =
-    document.documentElement.getAttribute("data-theme") === "dark";
+      document.documentElement.getAttribute("data-theme") === "dark";
 
     AMapLoader.load({
       key: window._AMapSecurityConfig.apiKey, // 申请好的Web端开发者Key，首次调用 load 时必填
@@ -582,7 +582,7 @@ export const AddressChagneMap = {
 
   mounted() {
     const isDarkMode =
-    document.documentElement.getAttribute("data-theme") === "dark";
+      document.documentElement.getAttribute("data-theme") === "dark";
     const $position = document.querySelector(`#position_${this.el.dataset.id}`);
     const [lat, lng, name] = $position.value.split(",");
 
@@ -613,6 +613,24 @@ export const AddressChagneMap = {
             lat: event.lnglat.getLat(),
             lng: event.lnglat.getLng(),
           });
+        });
+        map.on("hotspotclick", (ev) => {
+          //触发事件的对象
+          var target = ev.target;
+          //触发事件的地理坐标，AMap.LngLat 类型
+          var lnglat = ev.lnglat;
+          //触发事件的像素坐标，AMap.Pixel 类型
+          var pixel = ev.pixel;
+          //触发事件类型
+          var type = ev.type;
+          console.log("触发事件: click", ev);
+          this.pushEvent("change_address", {
+            osm_type: "node",
+            osm_id: ev.id,
+            latitude: ev.lnglat.getLat(),
+            longitude: ev.lnglat.getLng(),
+            name: ev.name
+          })
         });
 
         map.add(marker);
